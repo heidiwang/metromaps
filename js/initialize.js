@@ -223,7 +223,7 @@ function initializeLayers(){
         }
     }
   }
-} 
+}
 	/* var json = {
   "metromap": {
     "name": "LeBron James",

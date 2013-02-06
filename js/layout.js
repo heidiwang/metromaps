@@ -18,12 +18,8 @@ function setXPos(nodes) {
 	return nodes;
 }
 
-function setYPos(nodes, lines){
+function setYPos(nodes, lines) {
 	var lineOrdering = getLineOrdering(nodes, lines);
-	return initialYPos(nodes, lines, lineOrdering);
-}
-
-function initialYPos(nodes, lines, lineOrdering) {
 	var spacing = (CANVAS_HEIGHT - 100)/(NUM_LINES - 1);
 	var currentPos = 50;
 	
@@ -55,51 +51,70 @@ function initialYPos(nodes, lines, lineOrdering) {
 		nodes[n].y = sumY/numLines;
 	}
 	
-	var singletonNodes = getSingletonNodes(nodes);
-	var endSingletons = [];
-	
-	//walk through singleton nodes and shift to same Y as nearest shared node
-	for (var n in singletonNodes) {
-		for (var l in singletonNodes[n].lines) {
-			var nearestShared = getNearestShared(singletonNodes[n], lines[l].nodes);
-			singletonNodes[n].y = nearestShared.y;
-		}
-		if (isEndNode(singletonNodes[n], lines)) {
-			//console.log("found end singleton: " + singletonNodes[n].text);
-			endSingletons.push(singletonNodes[n]);
-		}
-	}
-	
-	//console.log("checking end singletons");
-	//for end singletons, check if there are any overlaps. If yes, nudge
-	for (var n in endSingletons) {
-		//console.log(endSingletons[n]);
-	}
-	
+	// move the singletons around to a more optimal layout
+	adjust(nodes, lines);
 	return nodes;
 }
 
-function getNodeIndex(node, lines) {
-	for (var l in lines) {
-		var lineNodes = lines[l].nodes;
-		for (var n in lineNodes) {
-			if (lineNodes[n] == node) {
-				return n;
+
+// Move singletons to the nearest shared node
+// If two singletons have the same "nearest shared," make them split
+function adjust(nodes, lines) {
+	var singletonNodes = getSingletonNodes(nodes);
+	var sharedToSingleDict = {};
+	
+	//initialize the dictionary items to empty arrays
+	for (var n in singletonNodes) {
+		for (var l in singletonNodes[n].lines) {
+			var nearestSharedId = getNearestShared(singletonNodes[n], lines[l].nodes).id;
+			sharedToSingleDict[nearestSharedId] = [];
+		}
+	}
+	
+	for (var n in singletonNodes) {
+		for (var l in singletonNodes[n].lines) {
+			var nearestSharedId = getNearestShared(singletonNodes[n], lines[l].nodes).id;
+			(sharedToSingleDict[nearestSharedId]).push(singletonNodes[n]);
+			var nearestShared = getNearestShared(singletonNodes[n], lines[l].nodes);
+			singletonNodes[n].y = nearestShared.y;
+		}
+	}
+	
+	for (var sharedNodeId in sharedToSingleDict) {
+	
+		var adjustNodesArray = sharedToSingleDict[sharedNodeId];
+		var adjustNodesBeforeArray = [];
+		var adjustNodesAfterArray = [];
+		
+		for (var n in adjustNodesArray) {
+			if (adjustNodesArray[n].x < nodes[sharedNodeId].x) {
+				adjustNodesBeforeArray.push(adjustNodesArray[n]);
+			}
+			else if (adjustNodesArray[n].x > nodes[sharedNodeId].x) {
+				adjustNodesAfterArray.push(adjustNodesArray[n]);
+			}
+		}
+		
+		if (adjustNodesBeforeArray.length > 1) {
+			var range = 50;		// for now, using a constant; can change to something better later
+			var currentPoint = nodes[sharedNodeId].y - (range/2);
+			var increment = range/(adjustNodesBeforeArray.length - 1);
+			for (var singletonNode in adjustNodesBeforeArray) {
+				adjustNodesBeforeArray[singletonNode].y = currentPoint;
+				currentPoint += increment;
+			}
+		}
+		
+		if (adjustNodesAfterArray.length > 1) {
+			var range = 50;		// for now, using a constant; can change to something better later
+			var currentPoint = nodes[sharedNodeId].y - (range/2);
+			var increment = range/(adjustNodesAfterArray.length - 1);
+			for (var singletonNode in adjustNodesAfterArray) {
+				adjustNodesAfterArray[singletonNode].y = currentPoint;
+				currentPoint += increment;
 			}
 		}
 	}
-}
-
-function isEndNode(node, lines) {
-	//console.log(node);
-	//console.log(lines);
-	for (var l in node.lines) {
-		var lineLength = countProperties(lines[l].nodes);
-		if ((node.lines[l] == 1) || (node.lines[l] == lineLength)) {
-			return true;
-		}
-	}
-	return false;
 }
 
 function getSingletonNodes(nodes) {
@@ -223,7 +238,6 @@ function largestNumIntersections(intersections) {
 	}
 	return currentHighestIntersection;
 }
-
 
 /***********************************
 PERMUTATIONS HELPER CODE
