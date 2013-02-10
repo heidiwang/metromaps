@@ -370,7 +370,8 @@ DRAW LEGEND
 
 function drawLegend(lines) {
 	var legendDiv = document.getElementById('legend');
-	var width = legendDiv.style.width;
+	var width = parseInt((legendDiv.style.width).replace("px", ""));
+	var height = parseInt((legendDiv.style.height).replace("px", ""));
 	
 	var numLines = 0;
 	for (var l in lines) {
@@ -378,14 +379,15 @@ function drawLegend(lines) {
 	}
 	
 	for (var l in lines) {
-		addLegendItem(lines[l], lines, legendDiv, numLines, width);
+		addLegendItem(lines[l], lines, legendDiv, numLines, width, height);
 	}
 }
 
-function addLegendItem(line, lines, legendDiv, numLines, width) {
+function addLegendItem(line, lines, legendDiv, numLines, width, height) {
+	
 	var lineDiv = document.createElement("div");
 	lineDiv.style.width = width;
-	lineDiv.style.height = (100 / numLines) + "px";
+	lineDiv.style.height = (height / numLines) + "px";
 	lineDiv.style.background = getColor(getLineNumber(line, lines));
 	lineDiv.style.color = "black";
 	lineDiv.innerHTML = line.name;

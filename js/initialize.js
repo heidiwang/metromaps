@@ -47,7 +47,7 @@ function initializeZoom(){
 // For now, using static dummy data for local development
 function initializeLayers(){
 
-	var json = {
+	/* var json = {
   "metromap": {
     "name": "Arab Spring",
     "lines": {
@@ -223,7 +223,7 @@ function initializeLayers(){
         }
     }
   }
-}
+} */
 	/* var json = {
   "metromap": {
     "name": "LeBron James",
@@ -343,7 +343,7 @@ function initializeLayers(){
     }
   }
 } */
-	/* var json = {
+	var json = {
   "metromap": {
     "name": "Fourier Analysis",
     "lines": {
@@ -477,6 +477,435 @@ function initializeLayers(){
         }
     }
   }
+}
+	/* var json = {
+ "metromap": {
+ "name": "Fourier Analysis",
+ "lines": {
+1:
+ {
+ "name": "one",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 2:
+ {
+ "name": "two",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 3:
+ {
+ "name": "three",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 4:
+ {
+ "name": "four",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 5:
+ {
+ "name": "five",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 6:
+ {
+ "name": "six",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },},
+ 
+ "events": {
+1: {
+ x: 0,
+ y: 0,
+ text: "1",
+ "date": "01-01-2010",
+"lines": {1:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+2: {
+ x: 0,
+ y: 0,
+ text: "2",
+ "date": "01-02-2010",
+"lines": {1:2},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+3: {
+ x: 0,
+ y: 0,
+ text: "3",
+ "date": "01-05-2010",
+"lines": {1:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+4: {
+ x: 0,
+ y: 0,
+ text: "4",
+ "date": "01-06-2010",
+"lines": {1:4},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+5: {
+ x: 0,
+ y: 0,
+ text: "5",
+ "date": "01-07-2010",
+"lines": {1:5},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+6: {
+ x: 0,
+ y: 0,
+ text: "6",
+ "date": "01-08-2010",
+"lines": {1:6,3:7,5:2,6:2},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+7: {
+ x: 0,
+ y: 0,
+ text: "7",
+ "date": "01-09-2010",
+"lines": {1:7,3:8,6:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+8: {
+ x: 0,
+ y: 0,
+ text: "8",
+ "date": "01-010-2010",
+"lines": {1:8},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+9: {
+ x: 0,
+ y: 0,
+ text: "9",
+ "date": "01-02-2010",
+"lines": {2:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+10: {
+ x: 0,
+ y: 0,
+ text: "10",
+ "date": "01-03-2010",
+"lines": {2:2},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+11: {
+ x: 0,
+ y: 0,
+ text: "11",
+ "date": "01-04-2010",
+"lines": {2:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+12: {
+ x: 0,
+ y: 0,
+ text: "12",
+ "date": "01-05-2010",
+"lines": {2:4},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+13: {
+ x: 0,
+ y: 0,
+ text: "13",
+ "date": "01-06-2010",
+"lines": {2:5},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+14: {
+ x: 0,
+ y: 0,
+ text: "14",
+ "date": "01-07-2010",
+"lines": {2:6},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+15: {
+ x: 0,
+ y: 0,
+ text: "15",
+ "date": "01-08-2010",
+"lines": {2:7},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+16: {
+ x: 0,
+ y: 0,
+ text: "16",
+ "date": "01-09-2010",
+"lines": {2:8},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+17: {
+ x: 0,
+ y: 0,
+ text: "17",
+ "date": "01-010-2010",
+"lines": {2:9},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+18: {
+ x: 0,
+ y: 0,
+ text: "18",
+ "date": "01-01-2010",
+"lines": {3:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+19: {
+ x: 0,
+ y: 0,
+ text: "19",
+ "date": "01-03-2010",
+"lines": {3:2},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+20: {
+ x: 0,
+ y: 0,
+ text: "20",
+ "date": "01-04-2010",
+"lines": {3:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+21: {
+ x: 0,
+ y: 0,
+ text: "21",
+ "date": "01-05-2010",
+"lines": {3:4},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+22: {
+ x: 0,
+ y: 0,
+ text: "22",
+ "date": "01-06-2010",
+"lines": {3:5},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+23: {
+ x: 0,
+ y: 0,
+ text: "23",
+ "date": "01-07-2010",
+"lines": {3:6},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+24: {
+ x: 0,
+ y: 0,
+ text: "24",
+ "date": "01-010-2010",
+"lines": {3:9},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+25: {
+ x: 0,
+ y: 0,
+ text: "25",
+ "date": "01-07-2010",
+"lines": {4:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+26: {
+ x: 0,
+ y: 0,
+ text: "26",
+ "date": "01-09-2010",
+"lines": {4:2},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+27: {
+ x: 0,
+ y: 0,
+ text: "27",
+ "date": "01-010-2010",
+"lines": {4:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+28: {
+ x: 0,
+ y: 0,
+ text: "28",
+ "date": "01-06-2010",
+"lines": {5:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+29: {
+ x: 0,
+ y: 0,
+ text: "29",
+ "date": "01-09-2010",
+"lines": {5:3},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+30: {
+ x: 0,
+ y: 0,
+ text: "30",
+ "date": "01-010-2010",
+"lines": {5:4},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+31: {
+ x: 0,
+ y: 0,
+ text: "31",
+ "date": "01-04-2010",
+"lines": {6:1},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+32: {
+ x: 0,
+ y: 0,
+ text: "32",
+ "date": "01-010-2010",
+"lines": {6:4},
+ "imp": "1",
+ "articles": [{
+ "title": "Witnesses report rioting in Tunisian town",
+"url": "http://www.reuters.com/article/2010/12/19/ozatp-tunisia-riot-idAFJOE6BI06U20101219" 
+ },
+]},
+ }
+ }
 } */
 
 	var metromap = json.metromap;
