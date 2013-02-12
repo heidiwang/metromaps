@@ -8,10 +8,10 @@ var LINE_IMP_SCALE = 15;
 var NODE_IMP_SCALE = 20;
 var NUM_NODES = 0;
 var NUM_LINES = 0;
+var backgroundLayer = new Kinetic.Layer();
 var layer0 = new Kinetic.Layer();
 var tickLayer = new Kinetic.Layer();
 var articleMenuLayer = new Kinetic.Layer();
-var articleMenuIsVisible;
 
 /***********************************
  INITIALIZE STAGE AND LAYERS 
@@ -23,7 +23,6 @@ var stage = new Kinetic.Stage({
 	height: CANVAS_HEIGHT,
 	draggable:true
 });
-
 var tickStage = new Kinetic.Stage({
 	container: 'container',
 	width: CANVAS_WIDTH,
@@ -40,13 +39,29 @@ initializeArticleMenu();
 
 function initializeZoom(){
 	document.addEventListener("mousewheel", zoom, false);
+	//var eventType = (navigator.userAgent.indexOf('Firefox') !=-1) ? "DOMMouseScroll" : "mousewheel";
+	//window.addEventListener(eventType, zoom, false);
 	addPanLogic();
 }
  
 // Later, import data here
 // For now, using static dummy data for local development
 function initializeLayers(){
+	backgroundLayer = new Kinetic.Layer({
+		width: CANVAS_WIDTH,
+		height: CANVAS_HEIGHT
+	});
+	var test = new Kinetic.Rect({
+				x: 10,
+				y: 10,
+				width: CANVAS_WIDTH,
+				height: CANVAS_HEIGHT,
+				fill: 'white'
+			});
+	backgroundLayer.add(test);
+	stage.add(backgroundLayer);
 
+	//var json = data;
 	/* var json = {
   "metromap": {
     "name": "Arab Spring",
@@ -941,16 +956,14 @@ function initializeTicks() {
 }
 
 function initializeArticleMenu(){
-	document.addEventListener("click", function(){
+	backgroundLayer.on("click", function(){
 		//Hide article menu
-		if (articleMenuIsVisible == true){
-			articleMenuLayer.setOpacity(0);
-			articleMenuIsVisible = false;
+		if (articleMenuLayer.getVisible()){
+			articleMenuLayer.setVisible(false);
 		}
 	}, false);
 	
-	articleMenuLayer.setOpacity(0);
-	articleMenuIsVisible = false;
+	articleMenuLayer.setVisible(false);
 	stage.add(articleMenuLayer);
 }
 

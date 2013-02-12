@@ -10,9 +10,10 @@ function zoom(e){
 	//mousePos is undefined when it's off of the stage 
 	//(i.e. somewhere else in browser window)
 	if (mousePos != undefined){
-		
 		var zoomAmount = e.wheelDeltaY*0.001;
-	
+		
+		articleMenuLayer.setVisible(false);
+		
 		// Save the old scale
 		var oldScale = layer0.getScale().x;
 		
@@ -39,24 +40,6 @@ function zoom(e){
 		var newAbsPosX = mousePos.x - (layerX * scaleRatio);
 		var newAbsPosY = mousePos.y - (layerY * scaleRatio);
 		layer0.setAbsolutePosition(newAbsPosX, newAbsPosY);
-		//layer1.setAbsolutePosition(newAbsPosX, newAbsPosY);
-
-		// Opacity logic, transitioning between layers
-		/*if (layer0.getScale().x < 2){
-			layer0.setOpacity(1);
-			layer1.setOpacity(0);
-		}
-		else if ((layer0.getScale().x > 2) && (layer0.getScale().x < 2.5)){	//fade zone
-			layer0.setOpacity(Math.abs(1 - (layer0.getScale().x - 2) * 2));
-			layer1.setOpacity((layer0.getScale().x - 2) * 2);
-		}
-		else if (layer0.getScale().x > 2.5){
-			layer0.setOpacity(0);
-			layer1.setOpacity(1);
-		}
-		else {
-			//error!
-		}*/
 		
 		tickLayer.setAbsolutePosition(newAbsPosX, 0);
 
@@ -70,7 +53,6 @@ function zoom(e){
 function setAllScales(x, y){      	
 	layer0.setScale(x, y);
 	tickLayer.setScale(x,y);
-	//layer1.setScale(x, y);
 }
 
 //For now, return the scale of layer 0

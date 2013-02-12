@@ -15,15 +15,18 @@ function addArticleHandler(drawItem, node) {
 }
 
 function toggleArticleMenu(drawItem, node){
-	if (articleMenuIsVisible == false){
+	if (!articleMenuLayer.getVisible()){
 		var xpos = drawItem.getAbsolutePosition().x;
 		var ypos = drawItem.getAbsolutePosition().y;
 		
 		populateArticleMenu(node.articles);
 		articleMenuLayer.setAbsolutePosition(xpos, ypos);
-		articleMenuLayer.setOpacity(1);
-		articleMenuIsVisible = true;		
+		articleMenuLayer.setVisible(true);
 	}
+	var xpos = drawItem.getAbsolutePosition().x;
+	var ypos = drawItem.getAbsolutePosition().y;
+	populateArticleMenu(node.articles);
+	articleMenuLayer.setAbsolutePosition(xpos, ypos);
 }
 
 function populateArticleMenu(articles) {
