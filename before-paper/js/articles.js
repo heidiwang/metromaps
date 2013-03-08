@@ -10,18 +10,21 @@ var PADDING = 5;
 ARTICLE MENU FUNCTIONS
 ***********************************/
 
-function addArticleHandler(drawItem, node) {
-	drawItem.on("click", function() {toggleArticleMenu(drawItem, node);});
-}
-
 function toggleArticleMenu(drawItem, node){
+	if (!articleMenuLayer.getVisible()){
+		var xpos = drawItem.getAbsolutePosition().x;
+		var ypos = drawItem.getAbsolutePosition().y;
+		
+		populateArticleMenu(node.articles);
+		articleMenuLayer.setAbsolutePosition(xpos, ypos);
+		articleMenuLayer.setVisible(true);
+		articleMenuLayer.draw();
+	}
 	var xpos = drawItem.getAbsolutePosition().x;
 	var ypos = drawItem.getAbsolutePosition().y;
 	populateArticleMenu(node.articles);
 	articleMenuLayer.setAbsolutePosition(xpos, ypos);
-	if (!articleMenuLayer.getVisible()){
-		articleMenuLayer.setVisible(true);
-	}
+	articleMenuLayer.draw();
 }
 
 function populateArticleMenu(articles) {
@@ -89,15 +92,19 @@ function getMaxHeight(articles) {
 	return maxHeight;
 }
 
+
+function addArticleHandler(drawItem, node) {
+	drawItem.on("mouseenter", function() {toggleArticleMenu(drawItem, node);});
+	/*drawItem.on("mouseenter", function() {
+		console.log("HELLO");
+	});*/
+}
+
 function addClick(button, title, article){
 	/*button.on('click', function() {
 			window.open(article.url,'_blank');
 	});*/
 	title.on('click', function(){
-			//window.open(article.url,'_blank');
-			
-			$("#inline1 #articleTitle").text(article.title);
-			$("#inline1 #articleText").text("blah blah blah");
-			$("#fancyboxbutton").click();
+			window.open(article.url,'_blank');
 	});
 }

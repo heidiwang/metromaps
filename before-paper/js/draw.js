@@ -22,7 +22,7 @@ function drawTimeTicks(nodes) {
 	for (var n in nodes) {
 		var date = nodes[n].date;
 		var splitDate = date.split("-");
-		var shortDate = splitDate[0] + "/" + splitDate[1];
+		var shortDate = splitDate[0] + "/" + splitDate[2];
 		if (datesDictionary[shortDate] == null) {
 			datesDictionary[shortDate] = true;
 			ticks.push(nodes[n]);
@@ -39,7 +39,7 @@ function drawTimeTicks(nodes) {
 		
 		var date = ticks[t].date;
 		var splitDate = date.split("-");
-		var shortDate = splitDate[0] + "/" + splitDate[1];
+		var shortDate = splitDate[0] + "/" + splitDate[2];
 		var label = new Kinetic.Text({
 			x: ticks[t].x - (CANVAS_WIDTH/NUM_NODES)/2,
 			y: 15,
