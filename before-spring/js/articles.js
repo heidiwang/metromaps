@@ -11,9 +11,7 @@ ARTICLE MENU FUNCTIONS
 ***********************************/
 
 function addArticleHandler(drawItem, node) {
-	drawItem.on("click", function() {
-		toggleArticleMenu(drawItem, node);
-	});
+	drawItem.on("click", function() {toggleArticleMenu(drawItem, node);});
 }
 
 function toggleArticleMenu(drawItem, node){
@@ -24,7 +22,6 @@ function toggleArticleMenu(drawItem, node){
 	if (!articleMenuLayer.getVisible()){
 		articleMenuLayer.setVisible(true);
 	}
-	articleMenuLayer.draw();
 }
 
 function populateArticleMenu(articles) {
@@ -61,7 +58,7 @@ function populateArticleMenu(articles) {
 			fontSize: 9,
 			width: MENU_ITEM_WIDTH - PADDING*2,
 			fontFamily: 'Calibri',
-			fill: 'blue',
+			textFill: 'blue',
 			
 		});
 		currentPosition += (menuItemHeight + MENU_ITEM_SPACING);

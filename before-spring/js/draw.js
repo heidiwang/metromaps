@@ -47,7 +47,7 @@ function drawTimeTicks(nodes) {
 			text: shortDate,
 			fontSize: 9,
 			fontFamily: 'Calibri',
-			fill: 'black',
+			textFill: 'black',
 			align: 'center'
 		});
 		
@@ -208,7 +208,7 @@ function drawCaption(node){
 		width: parseInt(node.imp) * caption_scale,
 		fontSize: (node.imp * NODE_IMP_SCALE)/4,
 		fontFamily: 'Calibri',
-		fill: 'black',
+		textFill: 'black',
 		align: 'center'
 	});
 	

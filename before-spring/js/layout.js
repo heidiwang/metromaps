@@ -1,87 +1,10 @@
 /***********************************
-FORCE-DIRECTED STUFF
-***********************************/
-
-//REPULSION = 50000; //for both x and y
-var REPULSION = 1000; //(for y only)
-var SPRING_K = 0;
-
-//repulsion
-function applyColoumbsLaw(nodes) {
-	for (var n in nodes) {
-		var nodeNForceX = 0;
-		var nodeNForceY = 0;
-		
-		for (var n2 in nodes) {
-			if (n == n2) {
-				continue;
-			}
-			var dX = nodes[n].x - nodes[n2].x;
-			var dY = nodes[n].y - nodes[n2].y;
-			var magnitude = Math.sqrt(dX*dX + dY*dY);
-			var distance = magnitude;
-			var directionX = dX/magnitude || 0;
-			var directionY = dY/magnitude || 0;
-			
-			//calculate force to each end point
-			var point1forceX = ((directionX * REPULSION)/(distance * distance * 0.5)) || 0;
-			var point1forceY = ((directionY * REPULSION)/(distance * distance * 0.5)) || 0;
-			
-			nodeNForceX += point1forceX;
-			nodeNForceY += point1forceY;
-		}
-		//console.log("COLOUMBS: " + nodeNForceX + ", " + nodeNForceY);
-		nodes[n].x += nodeNForceX;
-		nodes[n].y += nodeNForceY;
-	}
-}
-
-//attraction
-function applyHookesLaw(nodes, lines) {
-	initializeLineSegments(lines);
-	for (var n in nodes) {
-		var nodeNForceX = 0;
-		var nodeNForceY = 0;
-		
-		for (var n2 in nodes) {
-			var segment = n + ", " + n2;
-			if (segment in lineSegmentsArray) {
-				//console.log("FOUND A SEGMENT: " + n + ", " + n2);
-				var dX = nodes[n2].x - nodes[n].x;
-				var dY = nodes[n2].y - nodes[n].y;
-				var magnitude = Math.sqrt(dX*dX + dY*dY);
-				var springLength = Math.sqrt((nodes[n].x)*(nodes[n].x) 
-														+ (nodes[n2].x)*(nodes[n2].x));
-				var displacement = springLength - magnitude;
-				var directionX = dX/magnitude || 0;
-				var directionY = dY/magnitude || 0;
-				
-				//apply force to each end point
-				var point1forceX = directionX * (SPRING_K * displacement * -0.5);
-				var point1forceY = directionY * (SPRING_K * displacement * -0.5);
-				
-				nodeNForceX += point1forceX;
-				nodeNForceY += point1forceY;
-			}
-		}
-		//console.log("HOOKES: " + nodeNForceX + ", " + nodeNForceY);
-		nodes[n].x += nodeNForceX;
-		nodes[n].y += nodeNForceY;
-	}
-}
-
-
-/***********************************
 LAYOUT ALGORITHM
 ***********************************/
 
 function setLayout(nodes, lines) {
 	var xNodes = setXPos(nodes);
 	var xyNodes = setYPos(xNodes, lines);
-	for (var i = 0; i < 10000; i++) {
-		applyColoumbsLaw(nodes);
-		applyHookesLaw(nodes, lines);
-	}
 	return xyNodes;
 }
 
