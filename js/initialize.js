@@ -2,7 +2,7 @@
 /***********************************
 CONSTANTS & GLOBALS
 ***********************************/
-var CANVAS_WIDTH = 850;
+var CANVAS_WIDTH = 1250;
 var CANVAS_HEIGHT = 530;
 var LINE_IMP_SCALE = 15;
 var NODE_IMP_SCALE = 20;
@@ -39,7 +39,7 @@ INITIALIZER FUNCTIONS
 	initializeArticleMenu();
 });*/
 
-var data = {
+/*var data = {
  "metromap": {
  "name": "Israel",
  "lines": {
@@ -798,7 +798,1122 @@ var data = {
 	
 
 }
-}
+}*/
+/*var data = {
+ "metromap": {
+ "name": "Obama",
+ "lines": {
+1:
+ {
+ "name": "washington, united, president, related, military, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },2:
+ {
+ "name": "taliban, afghan, pakistani, militants, kabul, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },3:
+ {
+ "name": "tehran, ahmadinejad, fuel, atomic, uranium, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },4:
+ {
+ "name": "trade, export, bakiyev, currency, debris, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },5:
+ {
+ "name": "palestinians, netanyahu, middle, jerusalem, settlements, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },6:
+ {
+ "name": "detainee, guant, namo, suspect, interrogation, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },},
+ "events": {
+1: {
+ x: 0,
+ y: 0,
+ text: "president bush leaders secretary war ",
+ "date": "2009-01-02",
+"lines": {5:1},
+ "imp": "2",
+ "articles": [{
+ "title": "Syria Talks Signal New Direction for U.S.",
+"url": "file:///C:/src/metromaps-heidi/data/1998.html"
+ },
+{
+ "title": "News Analysis: Clinton, Familiar With Pitfalls of Mideast Politics, May Face Early Test in Gaza",
+"url": "file:///C:/src/metromaps-heidi/data/586.html"
+ },
+{
+ "title": "Iran Is on Clinton&#x2019;s Agenda, if Not Her Itinerary",
+"url": "file:///C:/src/metromaps-heidi/data/2022.html"
+ },
+{
+ "title": "Gaza Crisis Is Another Challenge for Obama, Who Defers to Bush for Now",
+"url": "file:///C:/src/metromaps-heidi/data/493.html"
+ },
+{
+ "title": "Clinton Starts Mideast Diplomacy With Cash for Gaza",
+"url": "file:///C:/src/metromaps-heidi/data/1957.html"
+ },
+]},
+
+2: {
+ x: 0,
+ y: 0,
+ text: "president bush military closely remained ",
+ "date": "2009-01-22",
+"lines": {6:1},
+ "imp": "2",
+ "articles": [{
+ "title": "Obama to Close Foreign Prisons and Guant&#xE1;namo Camp",
+"url": "file:///C:/src/metromaps-heidi/data/1007.html"
+ },
+{
+ "title": "Obama&#x2019;s War on Terror May Resemble Bush&#x2019;s in Some Areas",
+"url": "file:///C:/src/metromaps-heidi/data/1654.html"
+ },
+{
+ "title": "Ex-Detainee of U.S. Describes a 6-Year Ordeal",
+"url": "file:///C:/src/metromaps-heidi/data/661.html"
+ },
+{
+ "title": "Obama Orders Secret Prisons and Detention Camps Closed",
+"url": "file:///C:/src/metromaps-heidi/data/1022.html"
+ },
+{
+ "title": "U.S. Won&#x2019;t Label Terror Suspects as &#x2018;Combatants&#x2019;",
+"url": "file:///C:/src/metromaps-heidi/data/2238.html"
+ },
+]},
+
+3: {
+ x: 0,
+ y: 0,
+ text: "president related military security planning ",
+ "date": "2009-02-05",
+"lines": {4:1},
+ "imp": "2",
+ "articles": [{
+ "title": "U.S. Searches for Alternative to Central Asian Base",
+"url": "file:///C:/src/metromaps-heidi/data/1332.html"
+ },
+{
+ "title": "Russia Offers Kind Words, but Its Fist Is Clenched",
+"url": "file:///C:/src/metromaps-heidi/data/1361.html"
+ },
+{
+ "title": "Gates Says U.S. Still Discussing Air Base With Kyrgyzstan",
+"url": "file:///C:/src/metromaps-heidi/data/1695.html"
+ },
+{
+ "title": "NATO Chief Calls for More European Troops in Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/1407.html"
+ },
+{
+ "title": "Biden Signals U.S. Is Open to Deal With Russia on Missiles",
+"url": "file:///C:/src/metromaps-heidi/data/1398.html"
+ },
+]},
+
+4: {
+ x: 0,
+ y: 0,
+ text: "president related bush policies security ",
+ "date": "2009-02-16",
+"lines": {1:1,3:1},
+ "imp": "2",
+ "articles": [{
+ "title": "North Korea Threatens Long-Range Missile Test",
+"url": "file:///C:/src/metromaps-heidi/data/1619.html"
+ },
+{
+ "title": "Clinton, Heading Abroad, Takes Softer Tone on North Korea",
+"url": "file:///C:/src/metromaps-heidi/data/1594.html"
+ },
+{
+ "title": "News Analysis: China Jittery About Obama Amid Signs of Harder Line",
+"url": "file:///C:/src/metromaps-heidi/data/1060.html"
+ },
+{
+ "title": "News Analysis: China Jittery About Obama Amid Signs of Harder Line",
+"url": "file:///C:/src/metromaps-heidi/data/1075.html"
+ },
+{
+ "title": "U.S. Prepares to Broach Hard Issues With China",
+"url": "file:///C:/src/metromaps-heidi/data/1470.html"
+ },
+]},
+
+5: {
+ x: 0,
+ y: 0,
+ text: "president bush policies security military ",
+ "date": "2009-03-28",
+"lines": {2:1},
+ "imp": "2",
+ "articles": [{
+ "title": "White House Debate Led to Plan to Widen Afghan Effort",
+"url": "file:///C:/src/metromaps-heidi/data/2620.html"
+ },
+{
+ "title": "Obama Widens Missile Strikes Inside Pakistan",
+"url": "file:///C:/src/metromaps-heidi/data/1724.html"
+ },
+{
+ "title": "U.S. Weighs Taliban Strike Into Pakistan",
+"url": "file:///C:/src/metromaps-heidi/data/2348.html"
+ },
+{
+ "title": "Obstacle in Bid to Curb Afghan Trade in Narcotics",
+"url": "file:///C:/src/metromaps-heidi/data/357.html"
+ },
+{
+ "title": "C.I.A. Pakistan Campaign Is Working, Director Says",
+"url": "file:///C:/src/metromaps-heidi/data/1871.html"
+ },
+]},
+
+6: {
+ x: 0,
+ y: 0,
+ text: "council range sanctions resolutely lee ",
+ "date": "2009-04-05",
+"lines": {4:2},
+ "imp": "2",
+ "articles": [{
+ "title": "Defying World, North Koreans Launch Rocket",
+"url": "file:///C:/src/metromaps-heidi/data/2816.html"
+ },
+{
+ "title": "No U.S. Plans to Stop Korea on Missile Test",
+"url": "file:///C:/src/metromaps-heidi/data/2678.html"
+ },
+{
+ "title": "North Korea Seeks Political Gain from Rocket Launch",
+"url": "file:///C:/src/metromaps-heidi/data/2848.html"
+ },
+{
+ "title": "North Korea Rocket Launch on Track",
+"url": "file:///C:/src/metromaps-heidi/data/2788.html"
+ },
+{
+ "title": "No U.S. Plans to Stop Korea on ICBM Test",
+"url": "file:///C:/src/metromaps-heidi/data/2662.html"
+ },
+]},
+
+7: {
+ x: 0,
+ y: 0,
+ text: "travelers summit island embargo trinidad ",
+ "date": "2009-04-19",
+"lines": {1:2},
+ "imp": "2",
+ "articles": [{
+ "title": "Rising Expectations on Cuba Follow Obama",
+"url": "file:///C:/src/metromaps-heidi/data/3150.html"
+ },
+{
+ "title": "The World: Flirting With Cuba, Courting a Hemisphere",
+"url": "file:///C:/src/metromaps-heidi/data/3161.html"
+ },
+{
+ "title": "Obama Opens Door to Cuba, but Only a Crack",
+"url": "file:///C:/src/metromaps-heidi/data/3030.html"
+ },
+{
+ "title": "At Summit Meeting, Cuba Will Be Absent, Not Forgotten",
+"url": "file:///C:/src/metromaps-heidi/data/3112.html"
+ },
+{
+ "title": "Latin American Leaders Aim to Redefine Relationship With United States",
+"url": "file:///C:/src/metromaps-heidi/data/3098.html"
+ },
+]},
+
+8: {
+ x: 0,
+ y: 0,
+ text: "charges father journalists appeal spy ",
+ "date": "2009-04-27",
+"lines": {3:2},
+ "imp": "2",
+ "articles": [{
+ "title": "Father Says U.S. Journalist Jailed in Iran &#x2018;Very Weak&#x2019;",
+"url": "file:///C:/src/metromaps-heidi/data/3355.html"
+ },
+{
+ "title": "Lawyer Defends Reporter in Iran",
+"url": "file:///C:/src/metromaps-heidi/data/3701.html"
+ },
+{
+ "title": "Journalist&#x2019;s Release Shows Divide Among Iran&#x2019;s Leaders",
+"url": "file:///C:/src/metromaps-heidi/data/3726.html"
+ },
+{
+ "title": "Iran Releases Journalist Convicted of Spying for U.S.",
+"url": "file:///C:/src/metromaps-heidi/data/3720.html"
+ },
+{
+ "title": "U.S. Journalist Jailed in Iran Ends Hunger Strike",
+"url": "file:///C:/src/metromaps-heidi/data/3572.html"
+ },
+]},
+
+9: {
+ x: 0,
+ y: 0,
+ text: "arms capitalizing district valley buner ",
+ "date": "2009-04-29",
+"lines": {2:2},
+ "imp": "2",
+ "articles": [{
+ "title": "Pakistan Claims to Retake Town From Taliban",
+"url": "file:///C:/src/metromaps-heidi/data/3393.html"
+ },
+{
+ "title": "Pakistani Army Tries to Stem Taliban Push",
+"url": "file:///C:/src/metromaps-heidi/data/3348.html"
+ },
+{
+ "title": "In a First, U.S. Provides Pakistan With Drone Data",
+"url": "file:///C:/src/metromaps-heidi/data/3783.html"
+ },
+{
+ "title": "Before U.S. Talks, Pakistan Claims Combat Gains",
+"url": "file:///C:/src/metromaps-heidi/data/3592.html"
+ },
+{
+ "title": "News Analysis: Now, U.S. Sees Pakistan as a Cause Distinct From Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/3460.html"
+ },
+]},
+
+10: {
+ x: 0,
+ y: 0,
+ text: "information investigations harsh prosecuted memo ",
+ "date": "2009-05-09",
+"lines": {6:2},
+ "imp": "2",
+ "articles": [{
+ "title": "List Says Top Democrats Were Briefed on Interrogations",
+"url": "file:///C:/src/metromaps-heidi/data/3675.html"
+ },
+{
+ "title": "Released Memos Could Lead to More Disclosures",
+"url": "file:///C:/src/metromaps-heidi/data/3111.html"
+ },
+{
+ "title": "Obama Open to Inquiry in Interrogation Abuses",
+"url": "file:///C:/src/metromaps-heidi/data/3216.html"
+ },
+{
+ "title": "Pressure Grows to Investigate Interrogations",
+"url": "file:///C:/src/metromaps-heidi/data/3201.html"
+ },
+{
+ "title": "Report Outlines Medical Workers&#x2019; Role in Torture",
+"url": "file:///C:/src/metromaps-heidi/data/2857.html"
+ },
+]},
+
+11: {
+ x: 0,
+ y: 0,
+ text: "settlements growth freezing abbas west ",
+ "date": "2009-05-14",
+"lines": {5:2},
+ "imp": "2",
+ "articles": [{
+ "title": "U.S., Israel Tensions Rising Before Visit by Netanyahu",
+"url": "file:///C:/src/metromaps-heidi/data/3797.html"
+ },
+{
+ "title": "Israel Hopes for U.S. Settlement Shift",
+"url": "file:///C:/src/metromaps-heidi/data/4157.html"
+ },
+{
+ "title": "Israel Insists on Some Construction in West Bank Settlements",
+"url": "file:///C:/src/metromaps-heidi/data/4187.html"
+ },
+{
+ "title": "Jordan King Says Israel Must Accept Palestinian State",
+"url": "file:///C:/src/metromaps-heidi/data/3808.html"
+ },
+{
+ "title": "Obama Speech Will Seek to Alter Muslims&#x2019; View of U.S.",
+"url": "file:///C:/src/metromaps-heidi/data/4356.html"
+ },
+]},
+
+12: {
+ x: 0,
+ y: 0,
+ text: "elections june disputed protesters demonstrators ",
+ "date": "2009-06-20",
+"lines": {3:3},
+ "imp": "2",
+ "articles": [{
+ "title": "White House Resists Calls for a Tougher Stance on Iran",
+"url": "file:///C:/src/metromaps-heidi/data/4769.html"
+ },
+{
+ "title": "For Obama, Pressure to Strike Firmer Tone",
+"url": "file:///C:/src/metromaps-heidi/data/4718.html"
+ },
+{
+ "title": "Obama Condemns Iran&#x2019;s Iron Fist Against Protests",
+"url": "file:///C:/src/metromaps-heidi/data/4870.html"
+ },
+{
+ "title": "U.S. Officials to Continue to Engage Iran",
+"url": "file:///C:/src/metromaps-heidi/data/4632.html"
+ },
+{
+ "title": "U.S. Scrambles for Information on Iran",
+"url": "file:///C:/src/metromaps-heidi/data/4840.html"
+ },
+]},
+
+13: {
+ x: 0,
+ y: 0,
+ text: "george disputed lives mitchell negotiator ",
+ "date": "2009-06-29",
+"lines": {5:3},
+ "imp": "2",
+ "articles": [{
+ "title": "Israel May Shift on Settlements Freeze Amid Broader Effort",
+"url": "file:///C:/src/metromaps-heidi/data/4986.html"
+ },
+{
+ "title": "Diplomatic Memo: U.S. to Push Peace in Middle East Media Campaign",
+"url": "file:///C:/src/metromaps-heidi/data/5944.html"
+ },
+{
+ "title": "U.S. Rebukes Israel Over Settlement Plan",
+"url": "file:///C:/src/metromaps-heidi/data/6892.html"
+ },
+{
+ "title": "Letter from Europe: Telling Israel No: Obama's Bold Move",
+"url": "file:///C:/src/metromaps-heidi/data/5814.html"
+ },
+{
+ "title": "Israel Resists Pressure on Settlements",
+"url": "file:///C:/src/metromaps-heidi/data/4919.html"
+ },
+]},
+
+14: {
+ x: 0,
+ y: 0,
+ text: "trip russian soviet biden georgia ",
+ "date": "2009-07-03",
+"lines": {1:3,4:3},
+ "imp": "2",
+ "articles": [{
+ "title": "Russia Opens Route for U.S. to Fly Arms to Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/5110.html"
+ },
+{
+ "title": "Georgians Hope U.S. Will Join Boundary Monitors",
+"url": "file:///C:/src/metromaps-heidi/data/5586.html"
+ },
+{
+ "title": "Heading to Russia, Obama Is Mindful of Its Power Equation",
+"url": "file:///C:/src/metromaps-heidi/data/5153.html"
+ },
+{
+ "title": "NATO Chief Urges Bigger European Role in Afghan War",
+"url": "file:///C:/src/metromaps-heidi/data/5972.html"
+ },
+{
+ "title": "In Russia, Obama&#x2019;s Star Power Does Not Translate",
+"url": "file:///C:/src/metromaps-heidi/data/5224.html"
+ },
+]},
+
+15: {
+ x: 0,
+ y: 0,
+ text: "evidence federal justice attack held ",
+ "date": "2009-07-29",
+"lines": {6:3},
+ "imp": "2",
+ "articles": [{
+ "title": "Obama Faces Court Test Over Detainee",
+"url": "file:///C:/src/metromaps-heidi/data/5824.html"
+ },
+{
+ "title": "U.S. to Expand Review of Detainees in Afghan Prison",
+"url": "file:///C:/src/metromaps-heidi/data/7112.html"
+ },
+{
+ "title": "U.S. May Permit 9/11 Guilty Pleas in Capital Cases",
+"url": "file:///C:/src/metromaps-heidi/data/4429.html"
+ },
+{
+ "title": "Obama Faces Hurdles in Closing Guant&#xE1;namo",
+"url": "file:///C:/src/metromaps-heidi/data/5395.html"
+ },
+{
+ "title": "6 Detainees Are Freed as Questions Linger",
+"url": "file:///C:/src/metromaps-heidi/data/4573.html"
+ },
+]},
+
+16: {
+ x: 0,
+ y: 0,
+ text: "elections deploy iraqis mcchrystal mission ",
+ "date": "2009-08-24",
+"lines": {2:3},
+ "imp": "2",
+ "articles": [{
+ "title": "U.S. Military Says Its Force in Afghanistan Is Insufficient",
+"url": "file:///C:/src/metromaps-heidi/data/6543.html"
+ },
+{
+ "title": "Pakistan Objects to U.S. Expansion in Afghan War",
+"url": "file:///C:/src/metromaps-heidi/data/5616.html"
+ },
+{
+ "title": "More Leeway for New U.S. Commander in Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/4547.html"
+ },
+{
+ "title": "American Antiwar Movement Plans an Autumn Campaign Against Policies on Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/6733.html"
+ },
+{
+ "title": "Books of The Times: The Choices That Closed a Window Into Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/5411.html"
+ },
+]},
+
+17: {
+ x: 0,
+ y: 0,
+ text: "range shields poland afghanistan missiles ",
+ "date": "2009-09-18",
+"lines": {1:4},
+ "imp": "2",
+ "articles": [{
+ "title": "Putin Applauds &#x2018;Brave&#x2019; U.S. Decision on Missile Defense",
+"url": "file:///C:/src/metromaps-heidi/data/7258.html"
+ },
+{
+ "title": "Czechs Accept Modified Missile Shield Role",
+"url": "file:///C:/src/metromaps-heidi/data/8222.html"
+ },
+{
+ "title": "Poland Agrees to Accept U.S. Missile Interceptors",
+"url": "file:///C:/src/metromaps-heidi/data/8162.html"
+ },
+{
+ "title": "Russia Says It Won&#x2019;t Deploy Missiles Near Poland",
+"url": "file:///C:/src/metromaps-heidi/data/7296.html"
+ },
+{
+ "title": "White House to Scrap Bush&#x2019;s Approach to Missile Shield",
+"url": "file:///C:/src/metromaps-heidi/data/7227.html"
+ },
+]},
+
+18: {
+ x: 0,
+ y: 0,
+ text: "afghanistan secretary china elections european ",
+ "date": "2009-09-19",
+"lines": {4:4},
+ "imp": "2",
+ "articles": [{
+ "title": "Good Will for Obama, but Few Policy Benefits",
+"url": "file:///C:/src/metromaps-heidi/data/7286.html"
+ },
+{
+ "title": "Top Palestinian Rules Out Race for Re-election",
+"url": "file:///C:/src/metromaps-heidi/data/8617.html"
+ },
+{
+ "title": "Lack of Progress in Mideast Defies Obama&#x2019;s Hopes",
+"url": "file:///C:/src/metromaps-heidi/data/7266.html"
+ },
+{
+ "title": "France Wades Into Bog of North Korean Diplomacy",
+"url": "file:///C:/src/metromaps-heidi/data/8546.html"
+ },
+{
+ "title": "Iran Agrees to More Nuclear Talks With U.S. and Allies",
+"url": "file:///C:/src/metromaps-heidi/data/7634.html"
+ },
+]},
+
+19: {
+ x: 0,
+ y: 0,
+ text: "western karzai victory fraud round ",
+ "date": "2009-10-25",
+"lines": {2:4},
+ "imp": "2",
+ "articles": [{
+ "title": "Karzai Agrees to Nov. 7 Runoff in Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/8127.html"
+ },
+{
+ "title": "The Great American Arm-Twist in Afghanistan",
+"url": "file:///C:/src/metromaps-heidi/data/8265.html"
+ },
+{
+ "title": "Karzai Aide Says Afghan Runoff Vote Appears Likely",
+"url": "file:///C:/src/metromaps-heidi/data/8016.html"
+ },
+{
+ "title": "Abdullah Will Quit Afghan Election, Officials Say",
+"url": "file:///C:/src/metromaps-heidi/data/8461.html"
+ },
+{
+ "title": "Karzai Rival Says He Is Withdrawing From Runoff",
+"url": "file:///C:/src/metromaps-heidi/data/8473.html"
+ },
+]},
+
+20: {
+ x: 0,
+ y: 0,
+ text: "abbas hamas west building peacefully ",
+ "date": "2009-11-06",
+"lines": {5:4},
+ "imp": "2",
+ "articles": [{
+ "title": "Top Palestinian Rules Out Race for Re-election",
+"url": "file:///C:/src/metromaps-heidi/data/8617.html"
+ },
+{
+ "title": "Collapse Feared for Palestinian Authority if Abbas Resigns",
+"url": "file:///C:/src/metromaps-heidi/data/8704.html"
+ },
+{
+ "title": "Lack of Progress in Mideast Defies Obama&#x2019;s Hopes",
+"url": "file:///C:/src/metromaps-heidi/data/7266.html"
+ },
+{
+ "title": "Memo From Riyadh: Saudi Arabia and Egypt Fret as Influence Fades",
+"url": "file:///C:/src/metromaps-heidi/data/8759.html"
+ },
+{
+ "title": "Obama Will Meet With Mideast Leaders",
+"url": "file:///C:/src/metromaps-heidi/data/7295.html"
+ },
+]}
+}}}*/
+var data = {
+ "metromap": {
+ "name": "OJ Simpson",
+ "lines": {
+1:
+ {
+ "name": "simpson, police, murder, trial, cochran, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 2:
+ {
+ "name": "rate, cbs, president, advertisers, viewers, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 3:
+ {
+ "name": "clinton, center, imprisonment, elliott, stuart, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ 4:
+ {
+ "name": "left, hair, amendment, nigger, entering, ",
+ "imp": "1",
+ "nodes":[],
+ y: 0 },
+ },
+ "events": {
+
+1: {
+ x: 0,
+ y: 0,
+ text: "wife angeles former charge televised ",
+ "date": "1994-06-19",
+"lines": {1:1},
+ "imp": "3",
+ "articles": [{
+ "title": "Simpson, Under Suicide Watch, Is Jailed on 2 Murder Charges",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/15.html"
+ },
+{
+ "title": "Nicole Brown Simpson: Slain At the Dawn of a Better Life",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/40.html"
+ },
+{
+ "title": "A Troubled Life Unfolds: A special report.; Simpson: 'Baddest Cat,' a Polished Star, or Both?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/54.html"
+ },
+{
+ "title": "Simpson Is Charged, Chased, Arrested",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/8.html"
+ },
+{
+ "title": "A Lifelong Loyalty, True to the End",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/16.html"
+ },
+]},
+
+2: {
+ x: 0,
+ y: 0,
+ text: "wife angeles former los lawyers ",
+ "date": "1994-07-10",
+"lines": {4:1},
+ "imp": "3",
+ "articles": [{
+ "title": "In the Simpson Case, the Easy Part Is Over",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/108.html"
+ },
+{
+ "title": "Simpson Lawyers Seek to Exclude Bloody Evidence Found at Home",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/72.html"
+ },
+{
+ "title": "Simpson Ordered to Stand Trial In Slaying of Ex-Wife and Friend",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/101.html"
+ },
+{
+ "title": "Debating Death Penalty in Simpson Case",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/125.html"
+ },
+{
+ "title": "Prosecutors Use Testimony of 2 Men to Suggest Simpson Had Time to Commit Killings",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/92.html"
+ },
+]},
+
+3: {
+ x: 0,
+ y: 0,
+ text: "season abc executive televised cbs ",
+ "date": "1994-09-19",
+"lines": {2:1},
+ "imp": "3",
+ "articles": [{
+ "title": "Big TV Networks in Turmoil As the New Season Begins",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/232.html"
+ },
+{
+ "title": "TV News Magazine Shows Are Crowding One Another",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/306.html"
+ },
+{
+ "title": "A New Species of Couch Potato Takes Root",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/325.html"
+ },
+{
+ "title": "Everywhere You Look, 'Crypt' and More 'Crypt'",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/210.html"
+ },
+{
+ "title": "25 Years Later, Monday Night Is a Fall Classic",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/212.html"
+ },
+]},
+
+4: {
+ x: 0,
+ y: 0,
+ text: "questions selected media potentially interview ",
+ "date": "1994-10-10",
+"lines": {1:2,4:2},
+ "imp": "3",
+ "articles": [{
+ "title": "In Simpson Subtext, the Defense Tries to Put the Los Angeles Police on Trial",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/276.html"
+ },
+{
+ "title": "Judge Rejects Barrage of Objections by Simpson's Lawyers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/267.html"
+ },
+{
+ "title": "Simpson Trial Judge Rules For Quick Selection of Jury",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/251.html"
+ },
+{
+ "title": "Saber Rattling",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/290.html"
+ },
+{
+ "title": "Simpson Judge May Restrict Coverage",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/241.html"
+ },
+]},
+
+5: {
+ x: 0,
+ y: 0,
+ text: "including cross examiners walk reply ",
+ "date": "1995-03-10",
+"lines": {1:3,4:3},
+ "imp": "3",
+ "articles": [{
+ "title": "'Nervous' Detective Testifies on Simpson",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/538.html"
+ },
+{
+ "title": "Simpson Judge Delays Trial Opening and Will Allow Questioning of Detective on Bias",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/434.html"
+ },
+{
+ "title": "Simpson Team Begins Sketching Its Case for a Police Conspiracy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/544.html"
+ },
+{
+ "title": "Simpson Dream Testimony Stirs Uproar",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/462.html"
+ },
+{
+ "title": "PROSECUTORS WIN KEY SIMPSON FIGHT",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/418.html"
+ },
+]},
+
+6: {
+ x: 0,
+ y: 0,
+ text: "broadcast cbs president program network ",
+ "date": "1995-03-27",
+"lines": {2:2},
+ "imp": "3",
+ "articles": [{
+ "title": "'Nightline,' at 15, Is Now Stronger Than Ever",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/574.html"
+ },
+{
+ "title": "Cable Ratings at High, Aided by Simpson Trial",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/575.html"
+ },
+{
+ "title": "Cable Picks Up Viewers the Networks Cast Adrift",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/727.html"
+ },
+{
+ "title": "The issue is not the future of Connie Chung, but the future of evening newscasts as we know them.",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/712.html"
+ },
+{
+ "title": "CBS Profits Off 68% in Quarter; Weakness in TV Lineup Is Cited",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/616.html"
+ },
+]},
+
+7: {
+ x: 0,
+ y: 0,
+ text: "deputy dismissed panel scheck bags ",
+ "date": "1995-04-04",
+"lines": {1:4,4:4},
+ "imp": "3",
+ "articles": [{
+ "title": "Focus Shifts to Physical Evidence in Simpson Case",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/593.html"
+ },
+{
+ "title": "Simpson's Lawyers Attack Handling of Blood Samples",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/622.html"
+ },
+{
+ "title": "Hearing Asked on Simpson Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/617.html"
+ },
+{
+ "title": "Strain of Simpson Trial Takes Toll on One Juror",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/642.html"
+ },
+{
+ "title": "Simpson Prosecutors Get Back to the Bedrock Evidence",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/636.html"
+ },
+]},
+
+8: {
+ x: 0,
+ y: 0,
+ text: "district conference professor rarely leather ",
+ "date": "1995-06-23",
+"lines": {1:5},
+ "imp": "3",
+ "articles": [{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/767.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/768.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/769.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/770.html"
+ },
+{
+ "title": "Judge Ito to Open Files On 10 Dismissed Jurors",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/772.html"
+ },
+]},
+
+9: {
+ x: 0,
+ y: 0,
+ text: "mark district detectives fuhrman words ",
+ "date": "1995-08-30",
+"lines": {4:5},
+ "imp": "3",
+ "articles": [{
+ "title": "Racial Epithets by Detective Fill Simpson Courtroom",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/903.html"
+ },
+{
+ "title": "What the Tapes in the Simpson Case Say",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/891.html"
+ },
+{
+ "title": "Simpson Witness May Be Forced to Testify",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/856.html"
+ },
+{
+ "title": "Judge Ito Says Simpson Detective Doesn't Have to Face Jury Again",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/920.html"
+ },
+{
+ "title": "In Mounting Defense, O. J. Simpson's Lawyers Plan to Focus on 3 Themes",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/806.html"
+ },
+]},
+
+10: {
+ x: 0,
+ y: 0,
+ text: "verdict system guilty reason view ",
+ "date": "1995-10-04",
+"lines": {1:6,4:6},
+ "imp": "3",
+ "articles": [{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1018.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1009.html"
+ },
+{
+ "title": "THE SIMPSON TRIAL: THE OVERVIEW Verdict Is Reached in Simpson's Trial; Ito Defers Announcement Until Today; Jurors Are Out for Less Than Four Hours",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/995.html"
+ },
+{
+ "title": "THE SIMPSON TRIAL: THE OVERVIEWVerdict Is Reached in Simpson's Trial; Ito Defers Announcement Until Today; Jurors Are Out for Less Than Four Hours",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/990.html"
+ },
+{
+ "title": "Blacks Look at Simpson In the Context of the Past",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1104.html"
+ },
+]},
+
+11: {
+ x: 0,
+ y: 0,
+ text: "system watching view johnnie million ",
+ "date": "1995-10-05",
+"lines": {3:1},
+ "imp": "3",
+ "articles": [{
+ "title": "More Blacks in Their 20's Have Trouble With the Law",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1036.html"
+ },
+{
+ "title": "More Blacks in Their 20's Have Trouble With the Law",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1053.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1018.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1009.html"
+ },
+{
+ "title": "Simpson Cancels TV Interview, But Talks of Life Since Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1132.html"
+ },
+]},
+
+12: {
+ x: 0,
+ y: 0,
+ text: "verdict view closely million united ",
+ "date": "1995-10-11",
+"lines": {2:3},
+ "imp": "3",
+ "articles": [{
+ "title": "Simpson Interview Drawing Interest, and Protest",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1129.html"
+ },
+{
+ "title": "Simpson Interview Drawing Interest, and Protest",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1123.html"
+ },
+{
+ "title": "Bochco Tests America's New Legal Savvy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/968.html"
+ },
+{
+ "title": "Bochco Tests America's New Legal Savvy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/971.html"
+ },
+{
+ "title": "Late Meetings Led to Cancellation",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1140.html"
+ },
+]},
+
+13: {
+ x: 0,
+ y: 0,
+ text: "stopped forcefully remains democrat powell ",
+ "date": "1995-10-17",
+"lines": {3:2},
+ "imp": "3",
+ "articles": [{
+ "title": "Unimpressed by '96 Flock, Some Voters Are in No Hurry",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1143.html"
+ },
+{
+ "title": "Unimpressed by '96 Flock, Some Voters Are in No Hurry",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1145.html"
+ },
+{
+ "title": "One Campaign Over, Another to Begin?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1222.html"
+ },
+{
+ "title": "One Campaign Over, Another to Begin?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1216.html"
+ },
+{
+ "title": "Ardor and Ambiguity",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1186.html"
+ },
+]},
+
+
+14: {
+ x: 0,
+ y: 0,
+ text: "self accused refusing cost individually ",
+ "date": "1995-10-22",
+"lines": {1:7},
+ "imp": "3",
+ "articles": [{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1214.html"
+ },
+{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1220.html"
+ },
+{
+ "title": "Simpson Refusal to Testify Could Prove Costly",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1231.html"
+ },
+{
+ "title": "Simpson Refusal to Testify Could Prove Costly",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1233.html"
+ },
+{
+ "title": "Essay;The Newsmakers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1201.html"
+ },
+]},
+
+15: {
+ x: 0,
+ y: 0,
+ text: "culpable civil suit death public ",
+ "date": "1995-10-22",
+"lines": {4:7},
+ "imp": "3",
+ "articles": [{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1220.html"
+ },
+{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1214.html"
+ },
+{
+ "title": "Under Fire, Jury System Faces Overhaul",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1254.html"
+ },
+{
+ "title": "New Testimony About Simpson Brings Surprise",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1306.html"
+ },
+{
+ "title": "Simpson Loses Bid to Keep Secret the Transcript of a Deposition",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1275.html"
+ },
+]},
+
+
+16: {
+ x: 0,
+ y: 0,
+ text: "successfully average rerun nielsen million ",
+ "date": "1995-10-25",
+"lines": {2:4},
+ "imp": "3",
+ "articles": [{
+ "title": "Cable TV Continues Its Steady Drain Of Network Viewers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1239.html"
+ },
+{
+ "title": "Cable TV Continues Its Steady Drain Of Network Viewers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1238.html"
+ },
+{
+ "title": "NBC Confronts the 'What If's' Of Simpson Coup That Wasn't",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1173.html"
+ },
+{
+ "title": "NBC Confronts the 'What If's' Of Simpson Coup That Wasn't",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1168.html"
+ },
+{
+ "title": "New TV Shows: Not a Single Hit",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1241.html"
+ },
+]},
+ }
+ }
+ }
 
 initializeZoom();
 initializeLayers(data);
@@ -850,14 +1965,6 @@ function initializeLayers(json){
 	SEGMENT_TOTAL_WIDTH = getSmallestImp(nodes) * LINE_IMP_SCALE;
 	lines = addNodes(lines, nodes);
 	nodes = setLayout(nodes, lines);
-	/*
-	nodes[2].y = 140;
-	nodes[5].y = 140;
-	nodes[1].y = 300;
-	nodes[4].y = 300;
-	nodes[10].y = 300;
-	nodes[20].y = 420;
-	nodes[21].y = 420;*/
 	
 	draw(lines, nodes);
 	stage.add(layer0);
@@ -953,6 +2060,19 @@ function addHoverCursor(object) {
 	});
 	object.on('mouseleave', function() {
 		document.body.style.cursor = 'default';
+	});
+}
+
+function addHoverCaptionExpander(caption, originalWidth, text) {
+	caption.on('mouseenter', function() {
+		caption.setWidth(500);
+		caption.setText("\n" + text);
+		layer0.draw();
+	});
+	caption.on('mouseleave', function() {
+		caption.setWidth(originalWidth);
+		caption.setText("\n" + text.slice(0,5) + "...");
+		layer0.draw();
 	});
 }
 

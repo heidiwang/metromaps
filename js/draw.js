@@ -4,12 +4,35 @@ DRAWING FUNCTIONS
 var lineSegmentsArray = {};
 var SEGMENT_TOTAL_WIDTH;
 
+var nodesGlobal;
+var linesGlobal;
+
 function draw(lines, nodes){
+	nodesGlobal = nodes;
+	linesGlobal = lines;
 	drawTimeTicks(nodes);
 	initializeLineSegments(lines);
 	drawLines(lines);
 	drawNodes(nodes, lines);
-	drawLegend(lines);
+	//drawLegend(lines);
+	drawLineLabels(lines);
+}
+
+function drawLineLabels(lines) {
+	for (var l in lines) {
+		var firstNode = lines[l].nodes[0];
+		
+		var lineLabel = new Kinetic.Text({
+			x: firstNode.x,
+			y: firstNode.y + 100,
+			text: lines[l].name,
+			width: 800,
+			fontSize: 60,
+			fontFamily: 'Calibri',
+			fill: getColor(l)
+		});
+		addToLayer(lineLabel, 0);
+	}
 }
 
 /***********************************
@@ -45,7 +68,7 @@ function drawTimeTicks(nodes) {
 			y: 15,
 			width: CANVAS_WIDTH/NUM_NODES,
 			text: shortDate,
-			fontSize: 9,
+			fontSize: 22,
 			fontFamily: 'Calibri',
 			fill: 'black',
 			align: 'center'
@@ -86,9 +109,11 @@ function initializeLineSegments(lines){
 	}
 }
 
-function drawLines(lines){
+function drawLines(lines, focus){
+//	console.log(focus);
+	//console.log(lines);
+	
 	for (var l in lines){
-		var color = getColor(l);
 		
 		var thisLinesNodes = lines[l].nodes;
 		for (var n in thisLinesNodes){
@@ -126,6 +151,24 @@ function drawLines(lines){
 					
 				}
 				
+				opacity = 1;
+				var color = getColor(l);
+				if (focus != undefined) {
+					var opacity = 0.4;
+					var commonElements = [];
+					for(var i = 0; i<lineSegmentsArray[thisSegment].length; i++){
+						for(var j=0; j<focus.length; j++){
+							if (lineSegmentsArray[thisSegment][i] === focus[j]) {
+								commonElements.push(focus[j]);
+							}
+						}
+					}
+					
+					for (var e in commonElements) {
+						opacity = 1;
+					}
+				}
+				
 				var draw = new Kinetic.Line({
 					points: thisSegmentNodes,
 					stroke: color,
@@ -133,11 +176,32 @@ function drawLines(lines){
 					lineCap: 'round',
 					lineJoin: 'round'
 				});
-				
+				draw.setOpacity(opacity);
+
+				addHoverCursor(draw);
+				addFocusToggle(draw, lines, lineSegmentsArray[thisSegment]);
 				addToLayer(draw, 0);
 			}	
 		}
 	}
+}
+
+function addFocusToggle(object, lines, segmentArray) {	
+	object.on("mouseenter", function() {
+		layer0.removeChildren();
+		drawLines(lines, segmentArray);
+		drawNodes(nodesGlobal, lines, segmentArray);
+		drawLineLabels(lines);
+		layer0.draw();
+	});
+	
+	object.on("mouseleave", function() {
+		layer0.removeChildren();
+		drawLines(lines);
+		drawNodes(nodesGlobal, lines);
+		drawLineLabels(lines);
+		layer0.draw();
+	});
 }
 
 function offsetPoint(originalPoint, distance, slope, isMoveDown){
@@ -169,21 +233,37 @@ function offsetPoint(originalPoint, distance, slope, isMoveDown){
 DRAW NODES
 ***********************************/
 
-function drawNodes(nodes, lines){
+function drawNodes(nodes, lines, focus){	
 	var averageImp = getAverageImp(nodes);
+	
 	for (var n in nodes){
-		drawPlainNode(nodes[n], averageImp * NODE_IMP_SCALE);
 		
+		var opacity = 1;
+		if (focus != undefined) {
+			var opacity = 0.4;
+			var thisNodesLines = nodes[n].lines;
+			for (var l in thisNodesLines) {
+				for (var f in focus) {
+					if (String(l) == focus[f]) {
+						opacity = 1;
+					}
+				}
+			}
+		}
+			
+		drawPlainNode(nodes[n], averageImp * NODE_IMP_SCALE, opacity);
+	
 		var len = Object.keys(nodes[n].lines).length;
 		if (len != 1){
-			drawSharedNode(nodes[n], averageImp * NODE_IMP_SCALE, lines);
+			drawSharedNode(nodes[n], averageImp * NODE_IMP_SCALE, lines, opacity);
 		}
 
-		drawCaption(nodes[n]);
+		drawCaption(nodes[n], opacity);
 	}
 }
 
-function drawPlainNode(node, averageImp){
+function drawPlainNode(node, averageImp, opacity){
+
 	var color = getColor(Object.keys(node.lines)[0]);
 	var circle = new Kinetic.Circle({
 		x: node.x,
@@ -193,31 +273,36 @@ function drawPlainNode(node, averageImp){
 		fill: '#FFFFFF',
 		strokeWidth: averageImp/4
 	});
+	circle.setOpacity(opacity);
 	
 	addArticleHandler(circle, node);
 	addHoverCursor(circle);
 	addToLayer(circle, 0);
 }
 
-function drawCaption(node){
+function drawCaption(node, opacity){
 	var caption_scale = NODE_IMP_SCALE * 1.5;
+	var newText = "\n" + (node.text).slice(0,8) + "..."
 	var circleCaption = new Kinetic.Text({
 		x: node.x - (parseInt(node.imp) * caption_scale)/2,
 		y: node.y - (parseInt(node.imp) * caption_scale)/2,
-		text: node.text,
-		width: parseInt(node.imp) * caption_scale,
-		fontSize: (node.imp * NODE_IMP_SCALE)/4,
+		text: newText, //node.text,
+		width: 180, //parseInt(node.imp) * caption_scale,
+		height: parseInt(node.imp) * caption_scale,
+		fontSize: (node.imp * NODE_IMP_SCALE)/2,
 		fontFamily: 'Calibri',
 		fill: 'black',
 		align: 'center'
 	});
+	circleCaption.setOpacity(opacity);
 	
 	addArticleHandler(circleCaption, node);
 	addHoverCursor(circleCaption);
+	addHoverCaptionExpander(circleCaption, parseInt(node.imp) * caption_scale, node.text);
 	addToLayer(circleCaption, 0);
 }
 
-function drawSharedNode(node, averageImp, lines){
+function drawSharedNode(node, averageImp, lines, opacity){
 	allArcs = [];	//gather data for all the arcs that are associated with this node
 	
 	for (var l in node.lines){
@@ -263,6 +348,7 @@ function drawSharedNode(node, averageImp, lines){
 				stroke: allSortedArcs[arc].color,
 				strokeWidth: averageImp/4
 			});
+			circle.setOpacity(opacity);
 			
 			addArticleHandler(circle, node);
 			addHoverCursor(circle);
@@ -270,11 +356,11 @@ function drawSharedNode(node, averageImp, lines){
 		}
 		
 		drawArcs(allSortedArcs[arc].color, allSortedArcs[arc].node, 
-						allSortedArcs[arc].angle1, allSortedArcs[arc].angle2, averageImp);
+						allSortedArcs[arc].angle1, allSortedArcs[arc].angle2, averageImp, opacity);
 	}
 }
 
-function drawArcs(color, node, angle1, angle2, averageImp){
+function drawArcs(color, node, angle1, angle2, averageImp, opacity){
 	var arc = new Kinetic.Shape({
 		drawFunc: function(canvas) {
 			var context = canvas.getContext();
@@ -291,6 +377,7 @@ function drawArcs(color, node, angle1, angle2, averageImp){
 			context.stroke();
 		}
 	});
+	arc.setOpacity(opacity);
 	addToLayer(arc, 0);
 }
 
