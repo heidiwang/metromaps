@@ -1,0 +1,5 @@
+canvas { width: 800px; height: 600px; display:block; 
+	margin:1em auto; background:#fff; border:1px solid #ccc
+}
+
+body { background:#eee; margin:1em; text-align:center; }

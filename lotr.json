@@ -5,30 +5,35 @@
 "1": 
  { 
  "name": "bilbo, birthday, hobbits, passed, boats, ", 
+ "parent": "",
  "imp": "1", 
  "nodes":[], 
  "y": 0 },
 "2": 
  { 
  "name": "shire, hobbits, friends, baggins, door, ", 
+ "parent": "",
  "imp": "1", 
  "nodes":[], 
  "y": 0 },
 "3": 
  { 
  "name": "hobbits, passed, boats, dark, answered, ", 
+ "parent": "",
  "imp": "1", 
  "nodes":[], 
  "y": 0 },
 "4": 
  { 
  "name": "hobbits, passed, road, dark, left, ", 
+ "parent": "",
  "imp": "1", 
  "nodes":[], 
  "y": 0 },
 "5": 
  { 
  "name": "bilbo, bag, birthday, shire, hobbits, ", 
+ "parent": "",
  "imp": "1", 
  "nodes":[], 
  "y": 0 }
