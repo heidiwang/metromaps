@@ -76,8 +76,6 @@ LAYOUT ALGORITHM
 ***********************************/
 
 function setLayout(nodes, lines) {
-	permArr = [],
-	usedChars = [];
 	var xNodes = setXPos(nodes);
 	var xyNodes = setYPos(xNodes, lines);
 	for (var i = 0; i < 10000; i++) {
@@ -98,21 +96,13 @@ function setXPos(nodes) {
 }
 
 function setYPos(nodes, lines) {
-	//TODO: fix and reincorporate line ordering
 	var lineOrdering = getLineOrdering(nodes, lines);
-	/*var lineOrdering = [];
-	for (var l in lines) {
-		lineOrdering.push(parseInt(l));
-	}*/
-	
 	var spacing = (CANVAS_HEIGHT - 100)/(NUM_LINES - 1);
 	var currentPos = 50;
 	
 	// set each line's primary y coordinate
 	for (var i = 0; i < lineOrdering.length; i++) {
 		var thisLineId = lineOrdering[i];
-		//console.log(lines);
-		//console.log(thisLineId);
 		lines[thisLineId].y = currentPos;
 		
 		/*var draw = new Kinetic.Line({
@@ -330,7 +320,7 @@ function largestNumIntersections(intersections) {
 PERMUTATIONS HELPER CODE
 ***********************************/
 
-permArr = [],
+var permArr = [],
 usedChars = [];
 
 function permute(input) {

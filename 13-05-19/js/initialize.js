@@ -15,34 +15,17 @@ var backgroundLayer = new Kinetic.Layer();
 var layer0 = new Kinetic.Layer();
 var tickLayer = new Kinetic.Layer();
 var articleMenuLayer = new Kinetic.Layer();
-var originalLines;
-var originalNodes;
-var originalData;
 
 /***********************************
 INITIALIZER FUNCTIONS
 ***********************************/
-function processForm(e) {
-    if (e.preventDefault) e.preventDefault();
 
-    formSubmit();
-
-    // You must return false to prevent the default form behavior
-    return false;
-}
-
-var form = document.getElementById('my-form');
-if (form.attachEvent) {
-    form.attachEvent("submit", processForm);
-} else {
-    form.addEventListener("submit", processForm);
-}
-
+console.log("HELLO");
 
 function formSubmit() {
 	
 	//Clear old canvas
-	//document.getElementById("mapTitle").innerHTML = "";
+	document.getElementById("mapTitle").innerHTML = "";
 	stage = null;
 	tickStage = null;
 	backgroundLayer = new Kinetic.Layer();
@@ -55,11 +38,11 @@ function formSubmit() {
 			myNode.removeChild(myNode.firstChild);
 	}
 	
-	var filename = ($('#filename_input')).val() + ".json";
+	var form = document.getElementById("filenameForm");
+	var filename = form["filename"].value + ".json";
 	console.log(filename);
 	
 	$.getJSON(filename, function(data) {
-		originalData = data;
 	
 	/* INITIALIZE STAGE AND LAYERS */
 
@@ -74,7 +57,7 @@ function formSubmit() {
 			width: CANVAS_WIDTH,
 			height: 60
 		});
-		
+
 		initializeZoom();
 		initializeLayers(data);
 		initializeTicks();
@@ -1984,15 +1967,13 @@ function initializeLayers(json){
 				x: 10,
 				y: 10,
 				width: CANVAS_WIDTH,
-				height: CANVAS_HEIGHT
+				height: CANVAS_HEIGHT,
+				fill: 'white'
 			});
 	backgroundLayer.add(test);
 	stage.add(backgroundLayer);
 
 	var metromap = json.metromap;
-	
-	originalNodes = metromap.events;
-	originalLines = metromap.lines;
 	
 	/* Add title to map */
 	document.getElementById("mapTitle").innerHTML = metromap.name + " Metromap";

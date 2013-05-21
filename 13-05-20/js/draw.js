@@ -8,43 +8,17 @@ var nodesGlobal;
 var linesGlobal;
 
 var highlights = {};
-var holdHighlight = false;
-var highlightedLines = [""];
-
-var currentLayerParents = [""];
 
 function draw(lines, nodes){
-
-	var layerLines = {};
-	var layerNodes = [];
-	
-	for (var p in currentLayerParents) {
-		var parent = currentLayerParents[p];
-		for (var l in lines) {
-			if (lines[l].parent == parent) {
-				layerLines[l] = lines[l];
-			}
-		}
-		
-		console.log(layerLines);
-	
-		for (var line in layerLines) {
-			var thisLinesNodes = layerLines[line].nodes;
-			for (var node in thisLinesNodes) {
-				layerNodes.push(thisLinesNodes[node]);
-			}
-		}
-	}
-	
-	nodesGlobal = layerNodes;
-	linesGlobal = layerLines;
-	drawTimeTicks(layerNodes);
-	initializeLineSegments(layerLines);
-	drawHighlights(layerLines);
-	drawLines(layerLines);
-	drawNodes(layerNodes, layerLines);
+	nodesGlobal = nodes;
+	linesGlobal = lines;
+	drawTimeTicks(nodes);
+	initializeLineSegments(lines);
+	drawHighlights(lines);
+	drawLines(lines);
+	drawNodes(nodes, lines);
 	//drawLegend(lines);
-	drawLineLabels(layerLines);
+	drawLineLabels(lines);
 }
 
 function drawLineLabels(lines) {
@@ -298,47 +272,21 @@ function focus(segmentArray) {
 
 function addFocusToggle(object, lines, segmentArray) {	
 	object.on("mouseenter", function() {
-			highlightedLines = segmentArray;
-			layer0.removeChildren();
-			focus(segmentArray);
-			drawLines(lines, segmentArray);
-			drawNodes(nodesGlobal, lines, segmentArray);
-			drawLineLabels(lines);
-			layer0.draw();
+		layer0.removeChildren();
+		focus(segmentArray);
+		drawLines(lines, segmentArray);
+		drawNodes(nodesGlobal, lines, segmentArray);
+		drawLineLabels(lines);
+		layer0.draw();
 	});
 	
-	/*object.on("mouseleave", function() {
-		if (!holdHighlight) {
-			highlightedLines = [""];
-			layer0.removeChildren();
-			drawLines(lines);
-			drawNodes(nodesGlobal, lines);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-	});*/
-	
-	/*object.on("click", function() {
-		if (holdHighlight) {
-			holdHighlight = false;
-			highlightedLines = [""];
-			layer0.removeChildren();
-			drawLines(lines);
-			drawNodes(nodesGlobal, lines);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-		else{
-			holdHighlight = true;
-			highlightedLines = segmentArray;
-			layer0.removeChildren();
-			focus(segmentArray);
-			drawLines(lines, segmentArray);
-			drawNodes(nodesGlobal, lines, segmentArray);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-	});*/
+	object.on("mouseleave", function() {
+		layer0.removeChildren();
+		drawLines(lines);
+		drawNodes(nodesGlobal, lines);
+		drawLineLabels(lines);
+		layer0.draw();
+	});
 }
 
 function offsetPoint(originalPoint, distance, slope, isMoveDown){
@@ -430,13 +378,13 @@ function drawCaption(node, opacity){
 		fontSize: (node.imp * NODE_IMP_SCALE)/2,
 		fontFamily: 'Calibri',
 		fill: 'black',
-		align: 'left'
+		align: 'center'
 	});
 	circleCaption.setOpacity(opacity);
 	
 	addArticleHandler(circleCaption, node);
 	addHoverCursor(circleCaption);
-	addHoverCaptionExpander(circleCaption, 180, node.text);
+	addHoverCaptionExpander(circleCaption, parseInt(node.imp) * caption_scale, node.text);
 	addToLayer(circleCaption, 0);
 }
 

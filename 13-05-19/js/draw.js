@@ -7,44 +7,15 @@ var SEGMENT_TOTAL_WIDTH;
 var nodesGlobal;
 var linesGlobal;
 
-var highlights = {};
-var holdHighlight = false;
-var highlightedLines = [""];
-
-var currentLayerParents = [""];
-
 function draw(lines, nodes){
-
-	var layerLines = {};
-	var layerNodes = [];
-	
-	for (var p in currentLayerParents) {
-		var parent = currentLayerParents[p];
-		for (var l in lines) {
-			if (lines[l].parent == parent) {
-				layerLines[l] = lines[l];
-			}
-		}
-		
-		console.log(layerLines);
-	
-		for (var line in layerLines) {
-			var thisLinesNodes = layerLines[line].nodes;
-			for (var node in thisLinesNodes) {
-				layerNodes.push(thisLinesNodes[node]);
-			}
-		}
-	}
-	
-	nodesGlobal = layerNodes;
-	linesGlobal = layerLines;
-	drawTimeTicks(layerNodes);
-	initializeLineSegments(layerLines);
-	drawHighlights(layerLines);
-	drawLines(layerLines);
-	drawNodes(layerNodes, layerLines);
+	nodesGlobal = nodes;
+	linesGlobal = lines;
+	drawTimeTicks(nodes);
+	initializeLineSegments(lines);
+	drawLines(lines);
+	drawNodes(nodes, lines);
 	//drawLegend(lines);
-	drawLineLabels(layerLines);
+	drawLineLabels(lines);
 }
 
 function drawLineLabels(lines) {
@@ -91,7 +62,7 @@ function drawTimeTicks(nodes) {
 		
 		var date = ticks[t].date;
 		var splitDate = date.split("-");
-		var shortDate = splitDate[0] + "-" + splitDate[1];
+		var shortDate = splitDate[0] + "/" + splitDate[1];
 		var label = new Kinetic.Text({
 			x: ticks[t].x - (CANVAS_WIDTH/NUM_NODES)/2,
 			y: 15,
@@ -180,7 +151,6 @@ function drawLines(lines, focus){
 					
 				}
 				
-				/*
 				opacity = 1;
 				var color = getColor(l);
 				if (focus != undefined) {
@@ -197,16 +167,16 @@ function drawLines(lines, focus){
 					for (var e in commonElements) {
 						opacity = 1;
 					}
-				}*/
+				}
 				
 				var draw = new Kinetic.Line({
 					points: thisSegmentNodes,
-					stroke: getColor(l),
+					stroke: color,
 					strokeWidth: thisSegmentWidth,
 					lineCap: 'round',
 					lineJoin: 'round'
 				});
-				//draw.setOpacity(opacity);
+				draw.setOpacity(opacity);
 
 				addHoverCursor(draw);
 				addFocusToggle(draw, lines, lineSegmentsArray[thisSegment]);
@@ -216,129 +186,22 @@ function drawLines(lines, focus){
 	}
 }
 
-
-function drawHighlights(lines) {
-	for (var h in highlights) {
-		var highlightLine = highlights[h];
-		for (var s in highlightLine) {
-			highlightLine[s].remove();
-		}
-	}
-	layer0.draw();
-	highlights = {};
-	
-	for (var l in lines){
-		
-		var thisLinesNodes = lines[l].nodes;
-		for (var n in thisLinesNodes){
-			var nodeIndex = parseInt(n);
-			//draw segment by segment
-			if (nodeIndex != (thisLinesNodes.length -1)){
-				var thisSegment = thisLinesNodes[nodeIndex].id + ", " + thisLinesNodes[(parseInt(nodeIndex))+1].id;
-				var thisSegmentNodes = [thisLinesNodes[nodeIndex], thisLinesNodes[nodeIndex+1]];
-				var thisSegmentWidth = SEGMENT_TOTAL_WIDTH + 15;
-				
-				//multiple lines in this segment
-				//make width smaller and calculate offset for rainbow effect
-				if (lineSegmentsArray[thisSegment].length > 1){
-					thisSegmentWidth = thisSegmentWidth / (lineSegmentsArray[thisSegment].length);
-					var perpSlope = (-1) * ((thisSegmentNodes[0].x - thisSegmentNodes[1].x)/
-													(thisSegmentNodes[0].y - thisSegmentNodes[1].y));
-					//console.log(perpSlope == Infinity);
-					var basePointStart = offsetPoint(thisLinesNodes[nodeIndex], SEGMENT_TOTAL_WIDTH/2, perpSlope, true);
-					var basePointEnd = offsetPoint(thisLinesNodes[nodeIndex+1], SEGMENT_TOTAL_WIDTH/2, perpSlope, true);
-					
-					var myOffset;
-					for (var offsetNum in lineSegmentsArray[thisSegment]){
-						if (parseInt(lineSegmentsArray[thisSegment][offsetNum]) == parseInt(l)) {
-							myOffset = offsetNum;
-						}
-					}
-					
-					var offsetStart = offsetPoint(basePointStart, (thisSegmentWidth * (parseInt(myOffset)+1)), perpSlope, false)
-					var offsetEnd = offsetPoint(basePointEnd, (thisSegmentWidth * (parseInt(myOffset)+1)), perpSlope, false)
-					
-					var thisPointStart = offsetPoint(offsetStart, thisSegmentWidth/2, perpSlope, true);
-					var thisPointEnd = offsetPoint(offsetEnd, thisSegmentWidth/2, perpSlope, true);
-					
-					thisSegmentNodes = [thisPointStart, thisPointEnd];
-					
-				}
-				
-				var draw = new Kinetic.Line({
-					points: thisSegmentNodes,
-					stroke: 'yellow',
-					strokeWidth: thisSegmentWidth,
-					lineCap: 'round',
-					lineJoin: 'round'
-				});
-				draw.setOpacity(0);
-				
-				if (highlights[l] == undefined) {
-					highlights[l] = [];
-				}
-				highlights[l].push(draw);
-				addToLayer(draw, 0);
-			}	
-		}
-	}
-}
-
-function focus(segmentArray) {
-	for (var l in segmentArray) {
-		var line = segmentArray[l];
-		var lineSegmentObjects = highlights[line];
-		for (var s in lineSegmentObjects) {
-			lineSegmentObjects[s].setOpacity(1);
-			addToLayer(lineSegmentObjects[s], 0);
-		}
-	}
-}
-
-
 function addFocusToggle(object, lines, segmentArray) {	
 	object.on("mouseenter", function() {
-			highlightedLines = segmentArray;
-			layer0.removeChildren();
-			focus(segmentArray);
-			drawLines(lines, segmentArray);
-			drawNodes(nodesGlobal, lines, segmentArray);
-			drawLineLabels(lines);
-			layer0.draw();
+		layer0.removeChildren();
+		drawLines(lines, segmentArray);
+		drawNodes(nodesGlobal, lines, segmentArray);
+		drawLineLabels(lines);
+		layer0.draw();
 	});
 	
-	/*object.on("mouseleave", function() {
-		if (!holdHighlight) {
-			highlightedLines = [""];
-			layer0.removeChildren();
-			drawLines(lines);
-			drawNodes(nodesGlobal, lines);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-	});*/
-	
-	/*object.on("click", function() {
-		if (holdHighlight) {
-			holdHighlight = false;
-			highlightedLines = [""];
-			layer0.removeChildren();
-			drawLines(lines);
-			drawNodes(nodesGlobal, lines);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-		else{
-			holdHighlight = true;
-			highlightedLines = segmentArray;
-			layer0.removeChildren();
-			focus(segmentArray);
-			drawLines(lines, segmentArray);
-			drawNodes(nodesGlobal, lines, segmentArray);
-			drawLineLabels(lines);
-			layer0.draw();
-		}
-	});*/
+	object.on("mouseleave", function() {
+		layer0.removeChildren();
+		drawLines(lines);
+		drawNodes(nodesGlobal, lines);
+		drawLineLabels(lines);
+		layer0.draw();
+	});
 }
 
 function offsetPoint(originalPoint, distance, slope, isMoveDown){
@@ -375,7 +238,7 @@ function drawNodes(nodes, lines, focus){
 	
 	for (var n in nodes){
 		
-		/*var opacity = 1;
+		var opacity = 1;
 		if (focus != undefined) {
 			var opacity = 0.4;
 			var thisNodesLines = nodes[n].lines;
@@ -386,8 +249,7 @@ function drawNodes(nodes, lines, focus){
 					}
 				}
 			}
-		}*/
-		var opacity = 1;
+		}
 			
 		drawPlainNode(nodes[n], averageImp * NODE_IMP_SCALE, opacity);
 	
@@ -430,13 +292,13 @@ function drawCaption(node, opacity){
 		fontSize: (node.imp * NODE_IMP_SCALE)/2,
 		fontFamily: 'Calibri',
 		fill: 'black',
-		align: 'left'
+		align: 'center'
 	});
 	circleCaption.setOpacity(opacity);
 	
 	addArticleHandler(circleCaption, node);
 	addHoverCursor(circleCaption);
-	addHoverCaptionExpander(circleCaption, 180, node.text);
+	addHoverCaptionExpander(circleCaption, parseInt(node.imp) * caption_scale, node.text);
 	addToLayer(circleCaption, 0);
 }
 

@@ -1,8 +1,6 @@
 /***********************************
  ZOOM LOGIC
  ***********************************/
- var currentLayer = 0;
- 
 function zoom(e){
 	
 	var mousePos = stage.getMousePosition();
@@ -30,33 +28,6 @@ function zoom(e){
 		else{
 			setAllScales(getAllScales().x+zoomAmount, getAllScales().y+zoomAmount);
 		}
-		
-		if (layer0.getScale().x+zoomAmount > 1.5){
-			if (e.wheelDeltaY > 0 && currentLayer == 0) {
-				console.log("fade in new layer");
-				setAllScales(0.2,0.2);
-				currentLayer = 1;
-				currentLayerParents = highlightedLines;
-				console.log(currentLayerParents);
-				holdHighlight = false;
-				layer0.removeChildren();
-				$('#container').css('background-color', getColor(currentLayerParents[0]));
-				draw(originalLines, originalNodes);
-			}
-		}
-		else if (layer0.getScale().x+zoomAmount < 0.2) {
-			if (e.wheelDeltaY < 0 && currentLayer == 1) {
-				console.log("fade back to old layer");
-				setAllScales(1.5,1.5);
-				currentLayer = 0;
-				currentLayerParents = [""];
-				holdHighlight = false;
-				layer0.removeChildren();
-				$('#container').css('background-color', 'white');
-				draw(originalLines, originalNodes);
-			}
-		}
-		
 		
 		var newScale = getAllScales().x;
 		var scaleRatio = newScale / oldScale;

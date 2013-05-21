@@ -5,12 +5,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 	<!-- Add jQuery library -->
-	<script type="text/javascript" src="lib/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="source/jquery.fancybox.js?v=2.1.4"></script>
+	<!-- Add fancyBox JS and CSS files -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
 	<link rel="stylesheet" type="text/css" 
-				href="source/jquery.fancybox.css?v=2.1.4" media="screen" />
+				href="fancybox/jquery.fancybox.css?v=2.1.4" media="screen" />
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,17 +20,14 @@
 		});
 	</script>
 	
-	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 
-	<form id="my-form">
-		File name:
-    <input type="text" name="filename" id="filename_input"/><br/>
-    <button type="submit">Submit</button>
-</form>
-	
+	<form id="filenameForm">
+		File name: <input type="text" name="filename"><br>
+		<input type="button" onclick="formSubmit()" value="Submit">
+	</form>
 	
 	<div id="mapTitle"></div>
 	<div id="container">
@@ -44,11 +43,10 @@
 		<span id="articleText"></span>
 	</div>
 	
-	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.4.0.min.js"></script>
-	<script src="js/zoom.js"></script>
-	<script src="js/draw.js"></script>
-	<script src="js/articles.js"></script>
+	<script src="js/kinetic.js"></script>
 	<script src="js/layout.js"></script>
+	<script src="js/draw.js"></script>
 	<script src="js/initialize.js"></script>
+
 </body>
 </html>
