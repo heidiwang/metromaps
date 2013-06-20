@@ -4,6 +4,10 @@ body {
 	text-align: left;
 }
 
+#container {
+	position:relative;
+}
+
 #mapTitle {
 	background: #FFFFFF;
 	font-size: 20pt;
@@ -11,7 +15,20 @@ body {
 	z-index: 101;
 }
 
-#container {
-	width: 1250px;
-	height: 530px;
+#articleMenu {
+	position:absolute;
+	left: 10px;
+	top: 10px;
+	z-index: 1000;
+	background-color: #eeeeee;
+	padding: 5px;
+	display: none;
+	border-radius: 5px;
+}
+
+.articleButton {
+	font-family: "Calibri";
+	background: #ffffff;
+	font-size: 10pt;
+	width: 100%;
 }
