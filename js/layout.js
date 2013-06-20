@@ -5,6 +5,9 @@ LAYOUT ALGORITHM
 function setLayout() {
 	setXPos();
 	setYPos();
+	for (var i = 0; i < 100; i++) {
+		applyColoumbsLaw();
+	}
 }
 
 // Evenly space the nodes across the timeline
@@ -99,3 +102,35 @@ function permute(input, permArr, usedChars) {
 	}
 	return permArr;
 };
+
+
+// Repulsion
+function applyColoumbsLaw() {
+	var REPULSION = 10000;
+	for (var n in nodes) {
+		var nodeNForceX = 0;
+		var nodeNForceY = 0;
+		
+		for (var n2 in nodes) {
+			if (n == n2) {
+				continue;
+			}
+			var dX = nodes[n].x - nodes[n2].x;
+			var dY = nodes[n].y - nodes[n2].y;
+			var magnitude = Math.sqrt(dX*dX + dY*dY);
+			var distance = magnitude;
+			var directionX = dX/magnitude || 0;
+			var directionY = dY/magnitude || 0;
+			
+			//calculate force to each end point
+			var point1forceX = ((directionX * REPULSION)/(distance * distance * 0.5)) || 0;
+			var point1forceY = ((directionY * REPULSION)/(distance * distance * 0.5)) || 0;
+			
+			nodeNForceX += point1forceX;
+			nodeNForceY += point1forceY;
+		}
+		//console.log("COLOUMBS: " + nodeNForceX + ", " + nodeNForceY);
+		//nodes[n].x += nodeNForceX;
+		nodes[n].y += nodeNForceY;
+	}
+}

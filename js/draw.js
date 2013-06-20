@@ -7,7 +7,7 @@ function draw() {
 /***********************************
 TIMELINE FUNCTIONS
 ***********************************/
-
+//TODO: order by date, not by node ID
 function drawTimeline(tickStage) {
 	var numNodes = nodes.length;
 	var datesDictionary = {}; // use hash, no duplicates
