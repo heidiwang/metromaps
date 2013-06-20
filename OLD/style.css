@@ -1,0 +1,17 @@
+body {
+	background: #FFFFFF;
+	padding: 10px;
+	text-align: left;
+}
+
+#mapTitle {
+	background: #FFFFFF;
+	font-size: 20pt;
+	font-family: "Calibri";
+	z-index: 101;
+}
+
+#container {
+	width: 1250px;
+	height: 530px;
+}

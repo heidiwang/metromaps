@@ -1,0 +1,501 @@
+{
+ "metromap": {
+ "name": "OJ Simpson",
+ "lines": {
+"1":
+ {
+ "name": "simpson, police, murder, trial, cochran, ",
+ "parent": "",
+ "imp": "1",
+ "nodes":[],
+ "y": 0 },
+ "2":
+ {
+ "name": "rate, cbs, president, advertisers, viewers, ",
+ "parent": "",
+ "imp": "1",
+ "nodes":[],
+ "y": 0 },
+ "3":
+ {
+ "name": "clinton, center, imprisonment, elliott, stuart, ",
+ "parent": "",
+ "imp": "1",
+ "nodes":[],
+ "y": 0 },
+ "4":
+ {
+ "name": "left, hair, amendment, nigger, entering, ",
+ "parent": "",
+ "imp": "1",
+ "nodes":[],
+ "y": 0 }
+ },
+ "events": {
+
+"1": {
+ "x": 0,
+ "y": 0,
+ "text": "wife angeles former charge televised ",
+ "date": "1994-06-19",
+"lines": {"1":1},
+ "imp": "3",
+ "articles": [{
+ "title": "Simpson, Under Suicide Watch, Is Jailed on 2 Murder Charges",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/15.html"
+ },
+{
+ "title": "Nicole Brown Simpson: Slain At the Dawn of a Better Life",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/40.html"
+ },
+{
+ "title": "A Troubled Life Unfolds: A special report.; Simpson: 'Baddest Cat,' a Polished Star, or Both?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/54.html"
+ },
+{
+ "title": "Simpson Is Charged, Chased, Arrested",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/8.html"
+ },
+{
+ "title": "A Lifelong Loyalty, True to the End",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/16.html"
+ }
+]},
+
+"2": {
+ "x": 0,
+ "y": 0,
+ "text": "wife angeles former los lawyers ",
+ "date": "1994-07-10",
+"lines": {"4":1},
+ "imp": "3",
+ "articles": [{
+ "title": "In the Simpson Case, the Easy Part Is Over",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/108.html"
+ },
+{
+ "title": "Simpson Lawyers Seek to Exclude Bloody Evidence Found at Home",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/72.html"
+ },
+{
+ "title": "Simpson Ordered to Stand Trial In Slaying of Ex-Wife and Friend",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/101.html"
+ },
+{
+ "title": "Debating Death Penalty in Simpson Case",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/125.html"
+ },
+{
+ "title": "Prosecutors Use Testimony of 2 Men to Suggest Simpson Had Time to Commit Killings",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/92.html"
+ }
+]},
+
+"3": {
+ "x": 0,
+ "y": 0,
+ "text": "season abc executive televised cbs ",
+ "date": "1994-09-19",
+"lines": {"2":1},
+ "imp": "3",
+ "articles": [{
+ "title": "Big TV Networks in Turmoil As the New Season Begins",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/232.html"
+ },
+{
+ "title": "TV News Magazine Shows Are Crowding One Another",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/306.html"
+ },
+{
+ "title": "A New Species of Couch Potato Takes Root",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/325.html"
+ },
+{
+ "title": "Everywhere You Look, 'Crypt' and More 'Crypt'",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/210.html"
+ },
+{
+ "title": "25 Years Later, Monday Night Is a Fall Classic",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/212.html"
+ }
+]},
+
+"4": {
+ "x": 0,
+ "y": 0,
+ "text": "questions selected media potentially interview ",
+ "date": "1994-10-10",
+"lines": {"1":2,"4":2},
+ "imp": "3",
+ "articles": [{
+ "title": "In Simpson Subtext, the Defense Tries to Put the Los Angeles Police on Trial",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/276.html"
+ },
+{
+ "title": "Judge Rejects Barrage of Objections by Simpson's Lawyers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/267.html"
+ },
+{
+ "title": "Simpson Trial Judge Rules For Quick Selection of Jury",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/251.html"
+ },
+{
+ "title": "Saber Rattling",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/290.html"
+ },
+{
+ "title": "Simpson Judge May Restrict Coverage",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/241.html"
+ }
+]},
+
+"5": {
+ "x": 0,
+ "y": 0,
+ "text": "including cross examiners walk reply ",
+ "date": "1995-03-10",
+"lines": {"1":3,"4":3},
+ "imp": "3",
+ "articles": [{
+ "title": "'Nervous' Detective Testifies on Simpson",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/538.html"
+ },
+{
+ "title": "Simpson Judge Delays Trial Opening and Will Allow Questioning of Detective on Bias",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/434.html"
+ },
+{
+ "title": "Simpson Team Begins Sketching Its Case for a Police Conspiracy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/544.html"
+ },
+{
+ "title": "Simpson Dream Testimony Stirs Uproar",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/462.html"
+ },
+{
+ "title": "PROSECUTORS WIN KEY SIMPSON FIGHT",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/418.html"
+ }
+]},
+
+"6": {
+ "x": 0,
+ "y": 0,
+ "text": "broadcast cbs president program network ",
+ "date": "1995-03-27",
+"lines": {"2":2},
+ "imp": "3",
+ "articles": [{
+ "title": "'Nightline,' at 15, Is Now Stronger Than Ever",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/574.html"
+ },
+{
+ "title": "Cable Ratings at High, Aided by Simpson Trial",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/575.html"
+ },
+{
+ "title": "Cable Picks Up Viewers the Networks Cast Adrift",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/727.html"
+ },
+{
+ "title": "The issue is not the future of Connie Chung, but the future of evening newscasts as we know them.",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/712.html"
+ },
+{
+ "title": "CBS Profits Off 68% in Quarter; Weakness in TV Lineup Is Cited",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/616.html"
+ }
+]},
+
+"7": {
+ "x": 0,
+ "y": 0,
+ "text": "deputy dismissed panel scheck bags ",
+ "date": "1995-04-04",
+"lines": {"1":4,"4":4},
+ "imp": "3",
+ "articles": [{
+ "title": "Focus Shifts to Physical Evidence in Simpson Case",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/593.html"
+ },
+{
+ "title": "Simpson's Lawyers Attack Handling of Blood Samples",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/622.html"
+ },
+{
+ "title": "Hearing Asked on Simpson Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/617.html"
+ },
+{
+ "title": "Strain of Simpson Trial Takes Toll on One Juror",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/642.html"
+ },
+{
+ "title": "Simpson Prosecutors Get Back to the Bedrock Evidence",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/636.html"
+ }
+]},
+
+"8": {
+ "x": 0,
+ "y": 0,
+ "text": "district conference professor rarely leather ",
+ "date": "1995-06-23",
+"lines": {"1":5},
+ "imp": "3",
+ "articles": [{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/767.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/768.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/769.html"
+ },
+{
+ "title": "New-Found Simpson Photos May Bolster Prosecution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/770.html"
+ },
+{
+ "title": "Judge Ito to Open Files On 10 Dismissed Jurors",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/772.html"
+ }
+]},
+
+"9": {
+ "x": 0,
+ "y": 0,
+ "text": "mark district detectives fuhrman words ",
+ "date": "1995-08-30",
+"lines": {"4":5},
+ "imp": "3",
+ "articles": [{
+ "title": "Racial Epithets by Detective Fill Simpson Courtroom",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/903.html"
+ },
+{
+ "title": "What the Tapes in the Simpson Case Say",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/891.html"
+ },
+{
+ "title": "Simpson Witness May Be Forced to Testify",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/856.html"
+ },
+{
+ "title": "Judge Ito Says Simpson Detective Doesn't Have to Face Jury Again",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/920.html"
+ },
+{
+ "title": "In Mounting Defense, O. J. Simpson's Lawyers Plan to Focus on 3 Themes",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/806.html"
+ }
+]},
+
+"10": {
+ "x": 0,
+ "y": 0,
+ "text": "verdict system guilty reason view ",
+ "date": "1995-10-04",
+"lines": {"1":6,"4":6},
+ "imp": "3",
+ "articles": [{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1018.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1009.html"
+ },
+{
+ "title": "THE SIMPSON TRIAL: THE OVERVIEW Verdict Is Reached in Simpson's Trial; Ito Defers Announcement Until Today; Jurors Are Out for Less Than Four Hours",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/995.html"
+ },
+{
+ "title": "THE SIMPSON TRIAL: THE OVERVIEWVerdict Is Reached in Simpson's Trial; Ito Defers Announcement Until Today; Jurors Are Out for Less Than Four Hours",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/990.html"
+ },
+{
+ "title": "Blacks Look at Simpson In the Context of the Past",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1104.html"
+ }
+]},
+
+"11": {
+ "x": 0,
+ "y": 0,
+ "text": "system watching view johnnie million ",
+ "date": "1995-10-05",
+"lines": {"3":1},
+ "imp": "3",
+ "articles": [{
+ "title": "More Blacks in Their 20's Have Trouble With the Law",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1036.html"
+ },
+{
+ "title": "More Blacks in Their 20's Have Trouble With the Law",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1053.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1018.html"
+ },
+{
+ "title": "Jury Clears Simpson in Double Murder; Spellbound Nation Divides on Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1009.html"
+ },
+{
+ "title": "Simpson Cancels TV Interview, But Talks of Life Since Verdict",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1132.html"
+ }
+]},
+
+"12": {
+ "x": 0,
+ "y": 0,
+ "text": "verdict view closely million united ",
+ "date": "1995-10-11",
+"lines": {"2":3},
+ "imp": "3",
+ "articles": [{
+ "title": "Simpson Interview Drawing Interest, and Protest",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1129.html"
+ },
+{
+ "title": "Simpson Interview Drawing Interest, and Protest",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1123.html"
+ },
+{
+ "title": "Bochco Tests America's New Legal Savvy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/968.html"
+ },
+{
+ "title": "Bochco Tests America's New Legal Savvy",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/971.html"
+ },
+{
+ "title": "Late Meetings Led to Cancellation",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1140.html"
+ }
+]},
+
+"13": {
+ "x": 0,
+ "y": 0,
+ "text": "stopped forcefully remains democrat powell ",
+ "date": "1995-10-17",
+"lines": {"3":2},
+ "imp": "3",
+ "articles": [{
+ "title": "Unimpressed by '96 Flock, Some Voters Are in No Hurry",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1143.html"
+ },
+{
+ "title": "Unimpressed by '96 Flock, Some Voters Are in No Hurry",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1145.html"
+ },
+{
+ "title": "One Campaign Over, Another to Begin?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1222.html"
+ },
+{
+ "title": "One Campaign Over, Another to Begin?",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1216.html"
+ },
+{
+ "title": "Ardor and Ambiguity",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1186.html"
+ }
+]},
+
+"14": {
+ "x": 0,
+ "y": 0,
+ "text": "self accused refusing cost individually ",
+ "date": "1995-10-22",
+"lines": {"1":7},
+ "imp": "3",
+ "articles": [{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1214.html"
+ },
+{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1220.html"
+ },
+{
+ "title": "Simpson Refusal to Testify Could Prove Costly",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1231.html"
+ },
+{
+ "title": "Simpson Refusal to Testify Could Prove Costly",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1233.html"
+ },
+{
+ "title": "Essay;The Newsmakers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1201.html"
+ }
+]},
+
+"15": {
+ "x": 0,
+ "y": 0,
+ "text": "culpable civil suit death public ",
+ "date": "1995-10-22",
+"lines": {"4":7},
+ "imp": "3",
+ "articles": [{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1220.html"
+ },
+{
+ "title": "In Civil Court, a Second Chance at Retribution",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1214.html"
+ },
+{
+ "title": "Under Fire, Jury System Faces Overhaul",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1254.html"
+ },
+{
+ "title": "New Testimony About Simpson Brings Surprise",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1306.html"
+ },
+{
+ "title": "Simpson Loses Bid to Keep Secret the Transcript of a Deposition",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1275.html"
+ }
+]},
+
+"16": {
+ "x": 0,
+ "y": 0,
+ "text": "successfully average rerun nielsen million ",
+ "date": "1995-10-25",
+"lines": {"2":4},
+ "imp": "3",
+ "articles": [{
+ "title": "Cable TV Continues Its Steady Drain Of Network Viewers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1239.html"
+ },
+{
+ "title": "Cable TV Continues Its Steady Drain Of Network Viewers",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1238.html"
+ },
+{
+ "title": "NBC Confronts the 'What If's' Of Simpson Coup That Wasn't",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1173.html"
+ },
+{
+ "title": "NBC Confronts the 'What If's' Of Simpson Coup That Wasn't",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1168.html"
+ },
+{
+ "title": "New TV Shows: Not a Single Hit",
+"url": "file:///C:/src/metromaps-heidi/dataOJ/1241.html"
+ }
+]}
+ }
+ }
+}

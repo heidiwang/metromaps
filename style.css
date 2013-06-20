@@ -1,0 +1,34 @@
+body {
+	background: #FFFFFF;
+	padding: 10px;
+	text-align: left;
+}
+
+#container {
+	position:relative;
+}
+
+#mapTitle {
+	background: #FFFFFF;
+	font-size: 20pt;
+	font-family: "Calibri";
+	z-index: 101;
+}
+
+#articleMenu {
+	position:absolute;
+	left: 10px;
+	top: 10px;
+	z-index: 1000;
+	background-color: #eeeeee;
+	padding: 5px;
+	display: none;
+	border-radius: 5px;
+}
+
+.articleButton {
+	font-family: "Calibri";
+	background: #ffffff;
+	font-size: 10pt;
+	width: 100%;
+}

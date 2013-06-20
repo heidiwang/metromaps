@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Metromaps</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="lib/jquery-1.9.0.min.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="source/jquery.fancybox.js?v=2.1.4"></script>
+	<link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css?v=2.1.4" media="screen" />
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.fancybox').fancybox();
+		});
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="container">
+		<div id="mapTitle"></div>
+		<div id="legend" style="width:200px; height: 300px;"></div>
+	</div>
+
+	<a id="fancyboxbutton" class="fancybox" href="#inline1" style="visibility:hidden">Inline</a></li>
+
+	<div id="inline1" style="width:750px;display: none;">
+		<h3 id="articleTitle"></h3>
+		<p>
+		<span id="articleText"></span>
+	</div>
+	
+	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/v4.2.0/kinetic-v4.2.0.js"></script>
+    <script src="js/zoom.js"></script>
+    <script src="js/draw.js"></script>
+    <script src="js/articles.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/initialize.js"></script>
+</body>
+</html>
