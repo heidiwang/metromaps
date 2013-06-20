@@ -13,35 +13,46 @@ function setXPos() {
 	var currentPos = 50;
 	for (var n in nodes) {
 		nodes[n].x = currentPos;
-		currentPos = currentPos + spacing;
+		currentPos += spacing;
 	}
 }
 
-
-function setYPos() {
-	// Random Y, for testing
+// Find all possible orderings of the lines (i.e. 1234, 1243, 1324, etc.) using permute
+// After you find the optimal line ordering, set a major Y position for each line
+// For all nodes, Y is the average of the lines it is a part of
+function setYPos() {	
+	var lineIds = lines.map(function(lineObj){ return lineObj.id;});
+	var possibleOrderings = permute(lineIds, [], []);
+	var optimalOrdering = findOptimalOrder(possibleOrderings);
+	console.log(possibleOrderings);
+	
+	// Evenly space the nodes according to their line ordering
+	var lineYs = {};
+	var spacing = (CANVAS_HEIGHT - 100)/(lines.length - 1);
+	var currentPos = 50;
+	for (var l in optimalOrdering) {
+		var lineNumber = optimalOrdering[l];
+		lineYs[lineNumber] = currentPos;
+		currentPos += spacing;
+	}
+	
+	// Assign Y values to each node, average of the lines it is on
 	for (var n in nodes) {
-		var min = 0;
-		var max = CANVAS_HEIGHT;
-		var random = Math.floor(Math.random() * (max - min + 1)) + min;
-		nodes[n].y = random;
+		var myYSum = 0;
+		var myLines = nodes[n].lines;
+		for (var l in myLines) {
+			var currLine = myLines[l];
+			myYSum += lineYs[currLine];
+		}
+		var myYAverage = myYSum / myLines.length;
+		nodes[n].y = myYAverage;
 	}
-	
-	//var localNodes = nodes;
-	//var localLines = lines.map(function(line){return line.id});
-	
-	//var possibleOrderings = permute(localLines, [], []);
-	//console.log(findOptimalOrder(possibleOrderings));
 }
 
-/***********************************
-OLD LAYOUT STUFF, could probably use some refactoring
-***********************************/
-/*
+// Iterate through all possible orderings of the lines
+// Give each ordering a score based on how many nodes they share
+// Return the highest scoring ordering
 function findOptimalOrder(possibleOrderings) {
-	var localNodes = nodes;
-	var localLines = lines;
-	
 	var highestScore = 0;
 	var highestOrder = [];
 	for (var order in possibleOrderings) {
@@ -54,21 +65,21 @@ function findOptimalOrder(possibleOrderings) {
 	return highestOrder;
 }
 
+// For a given ordering (i.e. 1234),
+// count how many nodes the neighboring lines share
+// How many nodes do lines 1 and 2 share? How many nodes do lines 2 and 3 share? etc.
 function getOrderIntersections(order) {
-	console.log(order);
-	var localNodes = nodes;
 	var intersections = 0;
 	for (var i = 1; i < order.length; i++) {
 		var line = parseInt(order[i]);
 		var prevLine = parseInt(order[i-1]);
-		for (var n in localNodes) {
-			console.log(localNodes[n].lines);
-			if ($.inArray(localNodes[n].lines, line) && 
-					$.inArray(localNodes[n].lines, prevLine)) {
-				//console.log("HIT");
+		for (var n in nodes) {
+			if (($.inArray(line, nodes[n].lines) != -1) && 
+					($.inArray(prevLine, nodes[n].lines) != -1)) {
 				intersections++;
 			}
 		}
+		break;
 	}
 	return intersections;
 }
@@ -87,4 +98,4 @@ function permute(input, permArr, usedChars) {
 			usedChars.pop();
 	}
 	return permArr;
-};*/
+};

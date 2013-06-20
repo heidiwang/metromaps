@@ -613,9 +613,8 @@ function countKeys (obj) {
 };
 
 function initializeColors(){
-	var localLines = lines;
 	colors = {};
-	for (var l in localLines) {
+	for (var l in lines) {
 		colors[l] = get_random_color();
 	}
 }

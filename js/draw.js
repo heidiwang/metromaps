@@ -9,22 +9,21 @@ TIMELINE FUNCTIONS
 ***********************************/
 
 function drawTimeline(tickStage) {
-	var localNodes = nodes;
-	var numNodes = localNodes.length;
+	var numNodes = nodes.length;
 	var datesDictionary = {}; // use hash, no duplicates
 	var ticks = [];
 	
 	/* datesDictionary contains all unique dates */
-	for (var n in localNodes) {
-		var date = localNodes[n].date;
+	for (var n in nodes) {
+		var date = nodes[n].date;
 		var splitDate = date.split("-");
 		var shortDate = splitDate[1] + "/" + splitDate[0];
 		
 		if (datesDictionary[shortDate] == null) {
-			var startPoint = {x: localNodes[n].x, y: 0};
-			var endPoint = {x: localNodes[n].x, y: 10};
+			var startPoint = {x: nodes[n].x, y: 0};
+			var endPoint = {x: nodes[n].x, y: 10};
 			var points = [startPoint, endPoint];
-			datesDictionary[shortDate] = {"points": points, "x": localNodes[n].x};
+			datesDictionary[shortDate] = {"points": points, "x": nodes[n].x};
 		}
 	}
 	
@@ -60,17 +59,15 @@ LINES FUNCTIONS
 ***********************************/
 
 function drawLines() {
-	var localLines = lines;
-	var localNodes = nodes;
 	
 	// accumulate data into arrays for highlighting event handler
 	var allLines = [];
 	var allHighlights = [];
 	
 	// Draw each line, segment by segment
-	for (var l in localLines) {
+	for (var l in lines) {
 		var color = colors[parseInt(l)];
-		var currentNodeSet = localLines[l].nodes;
+		var currentNodeSet = lines[l].nodes;
 		var line = [];
 		var lineHighlights = [];
 		
@@ -78,8 +75,8 @@ function drawLines() {
 		for (var n = 1; n < currentNodeSet.length; n++) {
 			var prevNodeId = currentNodeSet[(n-1)];
 			var nodeId = currentNodeSet[n];
-			var prevNode = localNodes[prevNodeId];
-			var node = localNodes[nodeId];
+			var prevNode = nodes[prevNodeId];
+			var node = nodes[nodeId];
 			
 			// current line segment endpoints
 			var startPoint = {x: prevNode.x, y: prevNode.y};
@@ -207,15 +204,13 @@ function offsetPoint (originalPoint, distance, slope, down) {
 // For now, position it below first node in the line
 // TODO: Find a more optimal position
 function drawLineTitles() {
-	var localLines = lines;
-	var localNodes = nodes;
 	
-	for (var l in localLines) {
-		var firstNodeId = (localLines[l].nodes)[0];
+	for (var l in lines) {
+		var firstNodeId = (lines[l].nodes)[0];
 		var lineCaption = new Kinetic.Text({
-			x: localNodes[firstNodeId].x - 20,
-			y: localNodes[firstNodeId].y + (localNodes[firstNodeId].imp * 30),
-			text: localLines[l].name,
+			x: nodes[firstNodeId].x - 20,
+			y: nodes[firstNodeId].y + (nodes[firstNodeId].imp * 30),
+			text: lines[l].name,
 			width: 300,
 			height: 20,
 			fontSize: 20,
@@ -235,15 +230,14 @@ NODES FUNCTIONS
 ***********************************/
 
 function drawNodes() {
-	var localNodes = nodes;
-	for (var n in localNodes){
+	for (var n in nodes){
 		//For all the nodes on the current layer...
-		if (localNodes[n].layerId == currentLayer.id) {
-			drawPlainNode(localNodes[n]);
-			if ((localNodes[n].lines).length != 1){
-				drawSharedNode(localNodes[n]);
+		if (nodes[n].layerId == currentLayer.id) {
+			drawPlainNode(nodes[n]);
+			if ((nodes[n].lines).length != 1){
+				drawSharedNode(nodes[n]);
 			}
-			drawCaption(localNodes[n]);
+			drawCaption(nodes[n]);
 		}
 	}
 }
@@ -273,13 +267,11 @@ function drawPlainNode(node) {
 // Node is on two or more lines
 // Draw with multi-colored arcs
 function drawSharedNode(node) {	
-	var localLines = lines;
-	var localNodes = nodes;
 	var myArcs = [];
 	
 	for (var l in node.lines) {
 		var currentLineId = (node.lines)[l];
-		var currentLine = localLines[currentLineId];
+		var currentLine = lines[currentLineId];
 		var color = colors[currentLineId];
 		
 		var nodeIndex = parseInt($.inArray(node.id, currentLine.nodes));
@@ -288,13 +280,13 @@ function drawSharedNode(node) {
 		// If it's the first or last node, use straight angle
 		var leftPoint = (nodeIndex == 0) ? 
 										{x: node.x - 100, y: node.y} :
-										{x: localNodes[(currentLine.nodes[nodeIndex - 1])].x, 
-										y: localNodes[(currentLine.nodes[nodeIndex - 1])].y};
+										{x: nodes[(currentLine.nodes[nodeIndex - 1])].x, 
+										y: nodes[(currentLine.nodes[nodeIndex - 1])].y};
 		var centerPoint = {x: node.x, y: node.y};
 		var rightPoint = (nodeIndex == (currentLine.nodes.length - 1)) ? 
 										{x: node.x + 100, y: node.y} :
-										{x: localNodes[(currentLine.nodes[nodeIndex + 1])].x, 
-										y: localNodes[(currentLine.nodes[nodeIndex + 1])].y};
+										{x: nodes[(currentLine.nodes[nodeIndex + 1])].x, 
+										y: nodes[(currentLine.nodes[nodeIndex + 1])].y};
 		
 		var vector1 = {x: leftPoint.x - centerPoint.x, y: leftPoint.y - centerPoint.y};
 		var vector2 = {x: rightPoint.x - centerPoint.x, y: rightPoint.y - centerPoint.y};
