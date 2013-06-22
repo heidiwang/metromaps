@@ -27,7 +27,6 @@ function setYPos() {
 	var lineIds = lines.map(function(lineObj){ return lineObj.id;});
 	var possibleOrderings = permute(lineIds, [], []);
 	var optimalOrdering = findOptimalOrder(possibleOrderings);
-	console.log(possibleOrderings);
 	
 	// Evenly space the nodes according to their line ordering
 	var lineYs = {};
@@ -104,7 +103,7 @@ function permute(input, permArr, usedChars) {
 };
 
 
-// Repulsion
+// Repulsion, only apply to node's Y coordinate
 function applyColoumbsLaw() {
 	var REPULSION = 10000;
 	for (var n in nodes) {
@@ -119,18 +118,13 @@ function applyColoumbsLaw() {
 			var dY = nodes[n].y - nodes[n2].y;
 			var magnitude = Math.sqrt(dX*dX + dY*dY);
 			var distance = magnitude;
-			var directionX = dX/magnitude || 0;
 			var directionY = dY/magnitude || 0;
 			
 			//calculate force to each end point
-			var point1forceX = ((directionX * REPULSION)/(distance * distance * 0.5)) || 0;
 			var point1forceY = ((directionY * REPULSION)/(distance * distance * 0.5)) || 0;
 			
-			nodeNForceX += point1forceX;
 			nodeNForceY += point1forceY;
 		}
-		//console.log("COLOUMBS: " + nodeNForceX + ", " + nodeNForceY);
-		//nodes[n].x += nodeNForceX;
 		nodes[n].y += nodeNForceY;
 	}
 }

@@ -2,14 +2,42 @@
 ZOOM LOGIC
 ***********************************/
 function zoom(e) {
-	/*var mousePos = stage.getMousePosition();
+	var mousePos = stage.getMousePosition();
 	if (mousePos == undefined){
 		return;
 	}
 	
-	var zoomAmount = e.wheelDeltaY*0.001;
-	*/
-	console.log("zoom");
+	var zoomAmount = e.wheelDeltaY*0.001;	
+	var oldScaleX = (currentLayer.layer).getScale().x;
+	var oldScaleY = (currentLayer.layer).getScale().y;
+	var newScaleX = oldScaleX+zoomAmount;
+	var newScaleY = oldScaleY+zoomAmount;
+	
+	// Cap the zoom at 0.2 to prevent upside down land
+	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
+			return;
+	}
+	
+	//TODO: add logic for any number of layers
+	/*for (var l in layers) {
+	}*/
+	
+	else if ((newScaleX > 2.5 || newScaleY > 2.5) && (zoomAmount > 0)) {
+			return;
+	}
+	
+	var scaleRatio = newScaleX / oldScaleX;
+		
+	// Translate the layers to keep image around cursor point
+	var layerPosX = mousePos.x - (currentLayer.layer).getAbsolutePosition().x;
+	var layerPosY = mousePos.y - (currentLayer.layer).getAbsolutePosition().y;
+	var newAbsPosX = mousePos.x - (layerPosX * scaleRatio);
+	var newAbsPosY = mousePos.y - (layerPosY * scaleRatio);
+	
+	(currentLayer.layer).setAbsolutePosition(newAbsPosX, newAbsPosY);
+		
+	(currentLayer.layer).setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
+	(currentLayer.layer).draw();
 }
 
 
