@@ -104,7 +104,7 @@ function drawLines() {
 			lineHighlights.push(lineSegmentHighlight);
 			hoverCursor(lineSegment);
 		
-			(currentLayer.layer).add(lineSegmentHighlight);
+			currentLayer.add(lineSegmentHighlight);
 			
 			// multiple lines shared in between neighboring nodes
 			// draw rainbow line segment
@@ -114,8 +114,8 @@ function drawLines() {
 				lineSegment.setOpacity(0);
 			}
 			
-			(currentLayer.layer).add(lineSegment);
-			(currentLayer.layer).draw();	
+			currentLayer.add(lineSegment);
+			currentLayer.draw();	
 		}
 		allLines.push(line);
 		allHighlights.push(lineHighlights);
@@ -154,8 +154,8 @@ function drawRainbowLineSegment(leftNode, rightNode, dups) {
 		hoverCursor(lineSegment);
 		//TODO: ADD HOVER HIGHLIGHT ON RAINBOW SEGMENTS
 				
-		(currentLayer.layer).add(lineSegment);
-		(currentLayer.layer).draw();
+		currentLayer.add(lineSegment);
+		currentLayer.draw();
 		
 		currentPointLeft = offsetPoint (currentPointLeft, width, perpSlope, false);
 		currentPointRight = offsetPoint (currentPointRight, width, perpSlope, false);
@@ -220,8 +220,8 @@ function drawLineTitles() {
 			fill: colors[parseInt(lines[l].id)]
 		});
 
-		(currentLayer.layer).add(lineCaption);
-		(currentLayer.layer).draw();
+		currentLayer.add(lineCaption);
+		currentLayer.draw();
 	}
 }
 
@@ -257,8 +257,8 @@ function drawPlainNode(node) {
 	hoverCursor(circle);
 	articleHandler(circle, node);
 	
-	(currentLayer.layer).add(circle);
-	(currentLayer.layer).draw();
+	currentLayer.add(circle);
+	currentLayer.draw();
 }
 
 // Node is on two or more lines
@@ -329,8 +329,8 @@ function drawSharedNode(node) {
 			
 			node.kineticNode = circle;
 	
-			(currentLayer.layer).add(circle);
-			(currentLayer.layer).draw();
+			currentLayer.add(circle);
+			currentLayer.draw();
 		}
 		drawArc(arc);
 	}
@@ -355,8 +355,8 @@ function drawArc(arc) {
 		}
 	});
 
-	(currentLayer.layer).add(arcShape);
-	(currentLayer.layer).draw();
+	currentLayer.add(arcShape);
+	currentLayer.draw();
 }
 
 // Helper function for drawSharedNode
@@ -413,6 +413,6 @@ function drawCaption(node) {
 	captionExpander(circleCaption, shortText, node.text);
 	articleHandler(circleCaption, node);
 
-	(currentLayer.layer).add(circleCaption);
-	(currentLayer.layer).draw();
+	currentLayer.add(circleCaption);
+	currentLayer.draw();
 }

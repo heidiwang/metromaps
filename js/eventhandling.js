@@ -12,14 +12,14 @@ function zoom(e) {
 	}
 	
 	var zoomAmount = e.wheelDeltaY*0.001;	
-	var oldScaleX = (currentLayer.layer).getScale().x;
-	var oldScaleY = (currentLayer.layer).getScale().y;
+	var oldScaleX = currentLayer.getScale().x;
+	var oldScaleY = currentLayer.getScale().y;
 	var newScaleX = oldScaleX+zoomAmount;
 	var newScaleY = oldScaleY+zoomAmount;
 	
 	// Cap the zoom at 0.2 to prevent upside down land
 	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
-		(currentLayer.layer).draw();
+		currentLayer.draw();
 		return;
 	}
 	
@@ -28,21 +28,21 @@ function zoom(e) {
 	}*/
 	
 	else if ((newScaleX > 2.5 || newScaleY > 2.5) && (zoomAmount > 0)) {
-		(currentLayer.layer).draw();
+		currentLayer.draw();
 		return;
 	}
 	
 	var scaleRatio = newScaleX / oldScaleX;
 		
 	// Translate the layers to keep image around cursor point
-	var layerPosX = mousePos.x - (currentLayer.layer).getAbsolutePosition().x;
-	var layerPosY = mousePos.y - (currentLayer.layer).getAbsolutePosition().y;
+	var layerPosX = mousePos.x - currentLayer.getAbsolutePosition().x;
+	var layerPosY = mousePos.y - currentLayer.getAbsolutePosition().y;
 	var newAbsPosX = mousePos.x - (layerPosX * scaleRatio);
 	var newAbsPosY = mousePos.y - (layerPosY * scaleRatio);
 	
-	(currentLayer.layer).setAbsolutePosition(newAbsPosX, newAbsPosY);
-	(currentLayer.layer).setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
-	(currentLayer.layer).draw();
+	currentLayer.setAbsolutePosition(newAbsPosX, newAbsPosY);
+	currentLayer.setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
+	currentLayer.draw();
 }
 
 
@@ -63,12 +63,12 @@ function captionExpander(caption, shortText, fullText) {
 	caption.on('mouseenter', function() {
 		caption.setWidth(500);
 		caption.setText(fullText);
-		(currentLayer.layer).draw();
+		currentLayer.draw();
 	});
 	caption.on('mouseleave', function() {
 		caption.setWidth(100);
 		caption.setText(shortText);
-		(currentLayer.layer).draw();
+		currentLayer.draw();
 	});
 }
 
@@ -83,13 +83,13 @@ function toggleFocus(allLines, allHighlights) {
 					for (var s in lineHighlights) {
 						lineHighlights[s].setOpacity(1);
 					}
-					(currentLayer.layer).draw();
+					currentLayer.draw();
 				});
 				seg.on('mouseleave', function() {
 					for (var s in lineHighlights) {
 						lineHighlights[s].setOpacity(0);
 					}
-					(currentLayer.layer).draw();
+					currentLayer.draw();
 				});
 			})(segment, allHighlights[l]);
 			
@@ -106,7 +106,7 @@ function expandAllNodes(segment, l) {
 			var caption = getNodeById(nodeId).kineticCaption;
 			caption.setWidth(500);
 			caption.setText(getNodeById(nodeId).text);
-			(currentLayer.layer).draw();
+			currentLayer.draw();
 		}
 	});
 	segment.on('mouseleave', function(){
@@ -117,7 +117,7 @@ function expandAllNodes(segment, l) {
 			var shortText = (getNodeById(nodeId).text).slice(0,8) + "...";
 			caption.setWidth(100);
 			caption.setText(shortText);
-			(currentLayer.layer).draw();
+			currentLayer.draw();
 		}
 	});
 }
@@ -139,10 +139,10 @@ function clearArticleHandler(object) {
 }
 
 function toggleArticleMenuOn(node) {
-	var offsetX = (currentLayer.layer).getAbsolutePosition().x;
-	var offsetY = (currentLayer.layer).getAbsolutePosition().y;
-	var nodePosX = node.kineticNode.getX() * (currentLayer.layer).getScale().x;
-	var nodePosY = node.kineticNode.getY() * (currentLayer.layer).getScale().y;
+	var offsetX = currentLayer.getAbsolutePosition().x;
+	var offsetY = currentLayer.getAbsolutePosition().y;
+	var nodePosX = node.kineticNode.getX() * currentLayer.getScale().x;
+	var nodePosY = node.kineticNode.getY() * currentLayer.getScale().y;
 	
 	document.getElementById('articleMenu').innerHTML = "";
 	for (var a in node.articles) {

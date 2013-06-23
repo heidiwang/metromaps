@@ -3,13 +3,12 @@ CONSTANTS & GLOBALS
 ***********************************/
 var stage;
 var tickStage;
-var layers = [];
 var data = {};
 var allLines = [];
 var allNodes = [];
 var lines = []; // currently displayed lines
 var nodes = []; // currently displayed nodes
-var currentLayer = null;
+var currentLayer = new Kinetic.Layer();
 var CANVAS_WIDTH = 1200;
 var CANVAS_HEIGHT = 530;
 
@@ -672,28 +671,12 @@ function initializeStageAndLayers() {
 	stage.add(backgroundLayer);
 	
 	drawTimeline(tickStage);
-	initializeLayers(stage);
-}
-
-// TODO: iteratively initialize enough layers for this particular map
-function initializeLayers(stage) {
-	var layer0 = new Kinetic.Layer();
-	layers[0] = layer0;
-	currentLayer = {"id": 0, "layer": layer0};
-	stage.add(layer0);
+	stage.add(currentLayer);
 }
 
 /***********************************
 GENERAL HELPER FUNCTIONS
 ***********************************/
-
-function countKeys (obj) {
-	var size = 0, key;
-	for (key in obj) {
-			if (obj.hasOwnProperty(key)) size++;
-	}
-	return size;
-};
 
 function initializeColors(){
 	colors = {};
