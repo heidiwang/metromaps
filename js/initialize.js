@@ -5,15 +5,30 @@ var stage;
 var tickStage;
 var layers = [];
 var data = {};
-var lines = {};
-var nodes = {};
+var allLines = [];
+var allNodes = [];
+var lines = []; // currently displayed lines
+var nodes = []; // currently displayed nodes
 var currentLayer = null;
 var CANVAS_WIDTH = 1200;
 var CANVAS_HEIGHT = 530;
 
 function formSubmit() {
 
+	/*
 	//TODO: add in the dynamic json
+	
+	var filename = ($('#filename_input')).val() + ".json";
+	var data = {};
+	
+	$.getJSON(filename, function(JSONdata) {
+		data = JSONdata;
+		...
+	}).error(function() {
+		document.getElementById("container").innerHTML = "File not found";
+	});
+	*/
+	
 	var data = { 
 		"name": "Lord of the Rings",
 		"lines": 
@@ -21,26 +36,45 @@ function formSubmit() {
 				"id": 0,
 				"name": "bilbo, birthday, hobbits, passed, boats, ", 
 				"imp": "1", 
+				"layerId": 0,
 				"nodes":[], 
 				"y": 0
 			},{ "id": 1,
 				"name": "shire, hobbits, friends, baggins, door, ", 
 				"imp": "1", 
+				"layerId": 0,
 				"nodes":[], 
 				"y": 0 },
 			{ "id": 2,
 				"name": "hobbits, passed, boats, dark, answered, ", 
 				"imp": "1", 
+				"layerId": 0,
 				"nodes":[], 
 				"y": 0 },
 			{ "id": 3,
 				"name": "hobbits, passed, road, dark, left, ", 
 				"imp": "1", 
+				"layerId": 0,
 				"nodes":[], 
 				"y": 0 },
 			{ "id": 4,
 				"name": "bilbo, bag, birthday, shire, hobbits, ", 
 				"imp": "1", 
+				"layerId": 0,
+				"nodes":[], 
+				"y": 0 },
+			{ "id": 5,
+				"name": "test test test", 
+				"imp": "1", 
+				"layerId": 1,
+				"parentLine": 2,
+				"nodes":[], 
+				"y": 0 },
+			{ "id": 6,
+				"name": "test2 test2 test2", 
+				"imp": "1", 
+				"layerId": 1,
+				"parentLine": 2,
 				"nodes":[], 
 				"y": 0 }
 		], 
@@ -52,8 +86,7 @@ function formSubmit() {
 				 "text": "hall trees forest light land ", 
 				 "date": "2000-09-16",
 				"lines": [4], 
-				 "imp": "3", 
-					"layerId": 0,
+				 "imp": "3",
 				 "articles": [{
 				 "title": "everlasting  groan  of  overburdened stone. And  so  at the last Gwaihir the Windlord found me again, and he took me up and bore me away.  Ever am I fated to be your burden, friend at need, I said.",
 				"url": "" 
@@ -81,8 +114,7 @@ function formSubmit() {
 								"text": "wizard heard carefully vanished elves ", 
 								"date": "2000-01-04",
 								"lines": [4], 
-								"imp": "2", 
-								"layerId": 0,
+								"imp": "2",
 								"articles": [{
 									"title": "Chapter 3. Three is Company You ought to go quietly, and you ought to  go soon, said Gandalf. Two or three weeks had passed, and still Frodo made  no sign of getting ready to go. I know. But it is ",
 									"url": "/25.html" },
@@ -106,8 +138,7 @@ function formSubmit() {
 								"text": "guests golden ridiculous pavilion additions ", 
 								"date": "2000-01-07",
 								"lines": [0, 4], 
-								"imp": "2", 
-								"layerId": 0,
+								"imp": "2",
 								"articles": [{
 									"title": "immensely fond  of  you all, and that eleventy-one years is too short a time to live among such  excellent and  admirable hobbits.                 Tremendous outburst of approval.   dont know half o",
 									"url": "/6.html"},
@@ -130,8 +161,7 @@ function formSubmit() {
 				 "text": "pippin land hill night packed ", 
 				 "date": "2000-01-28",
 				"lines": [3], 
-				 "imp": "1", 
-								"layerId": 0,
+				 "imp": "1",
 				 "articles": [{
 				 "title": "fairly easy. I shall  get  myself a bit  into  training,  too, he said, looking at himself  in  a dusty mirror in the  half-empty  hall.  He  had  not done any strenuous walking for a long time, and",
 				"url": "/27.html" 
@@ -159,8 +189,7 @@ function formSubmit() {
 				 "text": "pippin rider grass expected gildor ", 
 				 "date": "2000-02-06",
 				"lines": [1], 
-				"imp": "2", 
-								"layerId": 0,
+				"imp": "2",
 				"articles": [{
 				 "title": "through  the lands.  The Wandering Companies shall know of your journey, and those that have power for good shall be on the watch. I name you Elf-friend; and  may the stars shine upon the end  of your",
 				 "url": "/36.html" 
@@ -188,8 +217,7 @@ function formSubmit() {
 				 "text": "path pony forest damp merry ", 
 				 "date": "2000-02-22",
 				"lines": [2], 
-				 "imp": "3", 
-								"layerId": 0,
+				 "imp": "3",
 				 "articles": [{
 				 "title": "The others looked in the  direction  that  Merry  pointed out, but they could see little but mists over the damp and  deep-cut valley; and beyond it the southern half of the Forest faded from view. Th",
 				"url": "/52.html" 
@@ -217,8 +245,7 @@ function formSubmit() {
 				 "text": "hopes black leave helped nob ", 
 				 "date": "2000-03-21",
 				"lines": [1], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "There! he  cried  after  a moment, drawing his hand  across his brow. Perhaps I know  more about these pursuers than you  do.  You fear them, but you do not fear them enough,  yet. Tomorrow you wil",
 				"url": "/80.html" 
@@ -246,8 +273,7 @@ function formSubmit() {
 				 "text": "white moment glorfindel horse elf ", 
 				 "date": "2000-04-15",
 				"lines": [3], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "time nearly asleep on their stumbling legs; and  even Strider seemed  by the sag of his shoulders to be weary. Frodo sat upon the horse in a dark dream. They  cast  themselves  down  in  the  heather ",
 				"url": "/105.html" 
@@ -275,8 +301,7 @@ function formSubmit() {
 				 "text": "gimli trees stone stood legolas ", 
 				 "date": "2000-06-05",
 				"lines": [4], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "Those were happier times. Now let us go! He strode  forward  and  set his foot  on the lowest  step. But at that moment several things happened. Frodo felt something seize him by the ankle, and he fe",
 				"url": "/156.html" 
@@ -304,8 +329,7 @@ function formSubmit() {
 				 "text": "ship shore land trees gray ", 
 				 "date": "2000-07-09",
 				"lines": [0], 
-				 "imp": "1", 
-								"layerId": 0,
+				 "imp": "1",
 				 "articles": [{
 				 "title": "walk among the stones or the trees. You are indeed high in the favour of the Lady! For she herself and her maidens wove this stuff; and never before have we clad strangers in the garb of our own peopl",
 				"url": "/190.html" 
@@ -333,8 +357,7 @@ function formSubmit() {
 				 "text": "sat boromir trees water eye ", 
 				 "date": "2000-07-09",
 				"lines": [2], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "Chapter 10. The Breaking of the Fellowship Aragorn led them to  the right  arm of the River. Here upon its western side under the shadow of Tol Brandir a green lawn ran down to the water from the feet",
 				"url": "/203.html" 
@@ -362,8 +385,7 @@ function formSubmit() {
 				 "text": "shone mist gray lurien elves ", 
 				 "date": "2000-07-12",
 				"lines":[0, 2], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "you desire something that I could give? Name it, I bid you! You shall not be the only guest without a gift. There  is  nothing,  Lady  Galadriel,  said  Gimli,  bowing  low  and stammering. Nothin",
 				"url": "/193.html" 
@@ -391,8 +413,7 @@ function formSubmit() {
 				 "text": "orcs north sword fall choice ", 
 				 "date": "2000-07-31",
 				"lines": [0,2], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "Boromir  is dead, said Aragorn. I am unscathed,  for  I was not here with him. He fell defending the hobbits, while I was away upon the hill. The hobbits! cried Gimli Where are they then? Where",
 				"url": "/212.html" 
@@ -420,8 +441,7 @@ function formSubmit() {
 				 "text": "orcs follow run resting rohan ", 
 				 "date": "2000-08-04",
 				"lines": [0, 2,3], 
-				 "imp": "3", 
-								"layerId": 0,
+				 "imp": "3",
 				 "articles": [{
 				 "title": "jet, tipped with glimmering snows, flushed with the rose of morning. Gondor! Gondor! cried  Aragorn. Would that I looked on  you again in happier hour! Not yet does my road lie southward to your br",
 				"url": "/216.html" 
@@ -449,8 +469,7 @@ function formSubmit() {
 				 "text": "orcs mark horse forest rider ", 
 				 "date": "2000-08-14",
 				"lines": [0, 2,3], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "Then  Shadowfax  has found  his  way alone from  the far North,  said Aragorn; for  it  was there that he and Gandalf  parted. But  alas! Gandalf will  ride no longer. He fell into darkness in the ",
 				"url": "/223.html" 
@@ -478,8 +497,7 @@ function formSubmit() {
 				 "text": "orcs saruman horse isengard merry ", 
 				 "date": "2000-08-21",
 				"lines": [0,1], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "great Uglk will lead us out again. Put  those  Halflings  down!  ordered  Uglk,  taking  no  notice  of Grishnbkh. You, Lugdush, get two others  and stand guard over them! Theyre not to be kill",
 				"url": "/233.html" 
@@ -507,8 +525,7 @@ function formSubmit() {
 				 "text": "battle fangorn forest light guessed ", 
 				 "date": "2000-09-08",
 				"lines": [1], 
-				 "imp": "2", 
-								"layerId": 0,
+				 "imp": "2",
 				 "articles": [{
 				 "title": "Chapter 5. The White Rider My very bones are chilled, said Gimli, flapping his arms and stamping his  feet.  Day  had  come at last.  At dawn  the companions  had made  such breakfast as they could;",
 				"url": "/251.html" 
@@ -529,7 +546,72 @@ function formSubmit() {
 				 "title": "we are. Maybe you have heard  of Trolls? They  are mighty strong. But Trolls are only counterfeits. made by the  Enemy in the Great  Darkness, in mockery of Ents, as Orcs were of Elves. We are stronge",
 				"url": "/250.html" 
 				 }
-				]}]
+				]},
+				{ "id": 17,
+				 "x": 0, 
+				 "y": 0, 
+				 "text": "test node test node", 
+				 "date": "2000-01-02",
+				"lines": [5], 
+				 "imp": "2",
+				 "articles": [{
+				 "title": "foo",
+				"url": "foo.html" 
+				 },
+				{
+				 "title": "bar",
+				"url": "bar.html" 
+				 }
+				]},
+				{ "id": 18,
+				 "x": 0, 
+				 "y": 0, 
+				 "text": "test node2 test node2", 
+				 "date": "2000-04-02",
+				"lines": [5,6], 
+				 "imp": "1",
+				 "articles": [{
+				 "title": "foo",
+				"url": "foo.html" 
+				 },
+				{
+				 "title": "bar",
+				"url": "bar.html" 
+				 }
+				]},
+				{ "id": 19,
+				 "x": 0, 
+				 "y": 0, 
+				 "text": "test node test node", 
+				 "date": "2000-07-02",
+				"lines": [5], 
+				 "imp": "2",
+				 "articles": [{
+				 "title": "foo",
+				"url": "foo.html" 
+				 },
+				{
+				 "title": "bar",
+				"url": "bar.html" 
+				 }
+				]},
+				{ "id": 20,
+				 "x": 0, 
+				 "y": 0, 
+				 "text": "test node2 test node2", 
+				 "date": "2000-10-02",
+				"lines": [6], 
+				 "imp": "1",
+				 "articles": [{
+				 "title": "foo",
+				"url": "foo.html" 
+				 },
+				{
+				 "title": "bar",
+				"url": "bar.html" 
+				 }
+				]}
+				]
 	}
 	sanitizeData(data);
 	
@@ -543,19 +625,20 @@ function formSubmit() {
 // Create references from nodes to lines and lines to nodes
 // Also, set x and y positions
 function sanitizeData(data) {
-	lines = data.lines;
-	nodes = data.events;
+	allLines = data.lines;
+	allNodes = data.events;
 	
-	for (var l in lines) {
-		for (var n in nodes) {
-			if ($.inArray(parseInt(l), nodes[n].lines) != -1) {
-				(lines[l].nodes).push(parseInt(n));
+	for (var l in allLines) {
+		for (var n in allNodes) {
+			if ($.inArray(parseInt(l), allNodes[n].lines) != -1) {
+				(allLines[l].nodes).push(parseInt(n));
 			}
 		}
 	}
 	
-	/* Calculate optimal layout */
+	/* Calculate optimal layout and initialize to layer 0 */
 	setLayout(nodes);
+	setNodesAndLines(0);
 }
 
 function initializeStageAndLayers() {
@@ -614,7 +697,7 @@ function countKeys (obj) {
 
 function initializeColors(){
 	colors = {};
-	for (var l in lines) {
+	for (var l in allLines) {
 		colors[l] = get_random_color();
 	}
 }
@@ -626,4 +709,43 @@ function get_random_color() {
 			color += letters[Math.round(Math.random() * 15)];
 	}
 	return color;
+}
+
+function getNodeById(nodeId) {
+	for (var n in nodes) {
+		if (nodes[n].id == nodeId) {
+			return nodes[n];
+		}
+	}
+}
+
+function getLineById(lineId) {
+	for (var l in lines) {
+		if (lines[l].id == lineId) {
+			return lines[l];
+		}
+	}
+}
+
+/* Set the "nodes" and "lines" variables to a hold only the data of given layer */
+function setNodesAndLines(layerId) {
+	for (var l in allLines) {
+		if (allLines[l].layerId == layerId) {
+			lines.push(allLines[l]);
+		}
+	}
+	
+	var lineIds = lines.map(function(lineObj){ return lineObj.id;});
+	
+	for (var n in allNodes) {
+		var myLines = allNodes[n].lines;
+		for (var ml in myLines) {
+			if (($.inArray(parseInt(myLines[ml]), lineIds) != -1) &&
+			(!($.inArray(allNodes[n], nodes) != -1)))
+			{
+				nodes.push(allNodes[n]);
+			}
+		}
+	}
+	
 }

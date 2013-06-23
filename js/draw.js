@@ -66,7 +66,7 @@ function drawLines() {
 	
 	// Draw each line, segment by segment
 	for (var l in lines) {
-		var color = colors[parseInt(l)];
+		var color = colors[parseInt(lines[l].id)];
 		var currentNodeSet = lines[l].nodes;
 		var line = [];
 		var lineHighlights = [];
@@ -75,8 +75,8 @@ function drawLines() {
 		for (var n = 1; n < currentNodeSet.length; n++) {
 			var prevNodeId = currentNodeSet[(n-1)];
 			var nodeId = currentNodeSet[n];
-			var prevNode = nodes[prevNodeId];
-			var node = nodes[nodeId];
+			var prevNode = getNodeById(prevNodeId);
+			var node = getNodeById(nodeId);
 			
 			// current line segment endpoints
 			var startPoint = {x: prevNode.x, y: prevNode.y};
@@ -208,8 +208,8 @@ function drawLineTitles() {
 	for (var l in lines) {
 		var firstNodeId = (lines[l].nodes)[0];
 		var lineCaption = new Kinetic.Text({
-			x: nodes[firstNodeId].x - 20,
-			y: nodes[firstNodeId].y + (nodes[firstNodeId].imp * 30),
+			x: getNodeById(firstNodeId).x - 20,
+			y: getNodeById(firstNodeId).y + (getNodeById(firstNodeId).imp * 30),
 			text: lines[l].name,
 			width: 300,
 			height: 20,
@@ -217,7 +217,7 @@ function drawLineTitles() {
 			fontFamily: 'Calibri',
 			fill: '#000000',
 			aligh: 'center',
-			fill: colors[parseInt(l)]
+			fill: colors[parseInt(lines[l].id)]
 		});
 
 		(currentLayer.layer).add(lineCaption);
@@ -231,14 +231,11 @@ NODES FUNCTIONS
 
 function drawNodes() {
 	for (var n in nodes){
-		//For all the nodes on the current layer...
-		if (nodes[n].layerId == currentLayer.id) {
-			drawPlainNode(nodes[n]);
-			if ((nodes[n].lines).length != 1){
-				drawSharedNode(nodes[n]);
-			}
-			drawCaption(nodes[n]);
+		drawPlainNode(nodes[n]);
+		if ((nodes[n].lines).length != 1){
+			drawSharedNode(nodes[n]);
 		}
+		drawCaption(nodes[n]);
 	}
 }
 
@@ -271,7 +268,7 @@ function drawSharedNode(node) {
 	
 	for (var l in node.lines) {
 		var currentLineId = (node.lines)[l];
-		var currentLine = lines[currentLineId];
+		var currentLine = getLineById(currentLineId);
 		var color = colors[currentLineId];
 		
 		var nodeIndex = parseInt($.inArray(node.id, currentLine.nodes));
@@ -280,13 +277,13 @@ function drawSharedNode(node) {
 		// If it's the first or last node, use straight angle
 		var leftPoint = (nodeIndex == 0) ? 
 										{x: node.x - 100, y: node.y} :
-										{x: nodes[(currentLine.nodes[nodeIndex - 1])].x, 
-										y: nodes[(currentLine.nodes[nodeIndex - 1])].y};
+										{x: getNodeById((currentLine.nodes[nodeIndex - 1])).x, 
+										y: getNodeById((currentLine.nodes[nodeIndex - 1])).y};
 		var centerPoint = {x: node.x, y: node.y};
 		var rightPoint = (nodeIndex == (currentLine.nodes.length - 1)) ? 
 										{x: node.x + 100, y: node.y} :
-										{x: nodes[(currentLine.nodes[nodeIndex + 1])].x, 
-										y: nodes[(currentLine.nodes[nodeIndex + 1])].y};
+										{x: getNodeById((currentLine.nodes[nodeIndex + 1])).x, 
+										y: getNodeById((currentLine.nodes[nodeIndex + 1])).y};
 		
 		var vector1 = {x: leftPoint.x - centerPoint.x, y: leftPoint.y - centerPoint.y};
 		var vector2 = {x: rightPoint.x - centerPoint.x, y: rightPoint.y - centerPoint.y};

@@ -12,10 +12,10 @@ function setLayout() {
 
 // Evenly space the nodes across the timeline
 function setXPos() {
-	var spacing = (CANVAS_WIDTH - 100)/(nodes.length - 1);
+	var spacing = (CANVAS_WIDTH - 100)/(allNodes.length - 1);
 	var currentPos = 50;
-	for (var n in nodes) {
-		nodes[n].x = currentPos;
+	for (var n in allNodes) {
+		allNodes[n].x = currentPos;
 		currentPos += spacing;
 	}
 }
@@ -24,13 +24,13 @@ function setXPos() {
 // After you find the optimal line ordering, set a major Y position for each line
 // For all nodes, Y is the average of the lines it is a part of
 function setYPos() {	
-	var lineIds = lines.map(function(lineObj){ return lineObj.id;});
+	var lineIds = allLines.map(function(lineObj){ return lineObj.id;});
 	var possibleOrderings = permute(lineIds, [], []);
 	var optimalOrdering = findOptimalOrder(possibleOrderings);
 	
 	// Evenly space the nodes according to their line ordering
 	var lineYs = {};
-	var spacing = (CANVAS_HEIGHT - 100)/(lines.length - 1);
+	var spacing = (CANVAS_HEIGHT - 100)/(allLines.length - 1);
 	var currentPos = 50;
 	for (var l in optimalOrdering) {
 		var lineNumber = optimalOrdering[l];
@@ -39,15 +39,15 @@ function setYPos() {
 	}
 	
 	// Assign Y values to each node, average of the lines it is on
-	for (var n in nodes) {
+	for (var n in allNodes) {
 		var myYSum = 0;
-		var myLines = nodes[n].lines;
+		var myLines = allNodes[n].lines;
 		for (var l in myLines) {
 			var currLine = myLines[l];
 			myYSum += lineYs[currLine];
 		}
 		var myYAverage = myYSum / myLines.length;
-		nodes[n].y = myYAverage;
+		allNodes[n].y = myYAverage;
 	}
 }
 
@@ -75,9 +75,9 @@ function getOrderIntersections(order) {
 	for (var i = 1; i < order.length; i++) {
 		var line = parseInt(order[i]);
 		var prevLine = parseInt(order[i-1]);
-		for (var n in nodes) {
-			if (($.inArray(line, nodes[n].lines) != -1) && 
-					($.inArray(prevLine, nodes[n].lines) != -1)) {
+		for (var n in allNodes) {
+			if (($.inArray(line, allNodes[n].lines) != -1) && 
+					($.inArray(prevLine, allNodes[n].lines) != -1)) {
 				intersections++;
 			}
 		}
@@ -106,16 +106,16 @@ function permute(input, permArr, usedChars) {
 // Repulsion, only apply to node's Y coordinate
 function applyColoumbsLaw() {
 	var REPULSION = 10000;
-	for (var n in nodes) {
+	for (var n in allNodes) {
 		var nodeNForceX = 0;
 		var nodeNForceY = 0;
 		
-		for (var n2 in nodes) {
+		for (var n2 in allNodes) {
 			if (n == n2) {
 				continue;
 			}
-			var dX = nodes[n].x - nodes[n2].x;
-			var dY = nodes[n].y - nodes[n2].y;
+			var dX = allNodes[n].x - allNodes[n2].x;
+			var dY = allNodes[n].y - allNodes[n2].y;
 			var magnitude = Math.sqrt(dX*dX + dY*dY);
 			var distance = magnitude;
 			var directionY = dY/magnitude || 0;
@@ -125,6 +125,6 @@ function applyColoumbsLaw() {
 			
 			nodeNForceY += point1forceY;
 		}
-		nodes[n].y += nodeNForceY;
+		allNodes[n].y += nodeNForceY;
 	}
 }

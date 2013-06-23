@@ -103,9 +103,9 @@ function expandAllNodes(segment, l) {
 		var myNodes = lines[l].nodes;
 		for (var n in myNodes) {
 			var nodeId = myNodes[n];
-			var caption = nodes[nodeId].kineticCaption;
+			var caption = getNodeById(nodeId).kineticCaption;
 			caption.setWidth(500);
-			caption.setText(nodes[nodeId].text);
+			caption.setText(getNodeById(nodeId).text);
 			(currentLayer.layer).draw();
 		}
 	});
@@ -113,8 +113,8 @@ function expandAllNodes(segment, l) {
 		var myNodes = lines[l].nodes;
 		for (var n in myNodes) {
 			var nodeId = myNodes[n];
-			var caption = nodes[nodeId].kineticCaption;
-			var shortText = (nodes[nodeId].text).slice(0,8) + "...";
+			var caption = getNodeById(nodeId).kineticCaption;
+			var shortText = (getNodeById(nodeId).text).slice(0,8) + "...";
 			caption.setWidth(100);
 			caption.setText(shortText);
 			(currentLayer.layer).draw();
