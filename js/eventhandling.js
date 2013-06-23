@@ -1,7 +1,11 @@
 /***********************************
 ZOOM LOGIC
 ***********************************/
+//TODO: Figure out why the node circles spazz out while zooming
 function zoom(e) {
+	//Clear the article menu
+	document.getElementById('articleMenu').style.display = "none";
+	
 	var mousePos = stage.getMousePosition();
 	if (mousePos == undefined){
 		return;
@@ -15,7 +19,8 @@ function zoom(e) {
 	
 	// Cap the zoom at 0.2 to prevent upside down land
 	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
-			return;
+		(currentLayer.layer).draw();
+		return;
 	}
 	
 	//TODO: add logic for any number of layers
@@ -23,7 +28,8 @@ function zoom(e) {
 	}*/
 	
 	else if ((newScaleX > 2.5 || newScaleY > 2.5) && (zoomAmount > 0)) {
-			return;
+		(currentLayer.layer).draw();
+		return;
 	}
 	
 	var scaleRatio = newScaleX / oldScaleX;
@@ -35,7 +41,6 @@ function zoom(e) {
 	var newAbsPosY = mousePos.y - (layerPosY * scaleRatio);
 	
 	(currentLayer.layer).setAbsolutePosition(newAbsPosX, newAbsPosY);
-		
 	(currentLayer.layer).setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
 	(currentLayer.layer).draw();
 }
@@ -134,8 +139,11 @@ function clearArticleHandler(object) {
 }
 
 function toggleArticleMenuOn(node) {
-	var offsetX = stage.getX();
-	var offsetY = stage.getY();
+	var offsetX = (currentLayer.layer).getAbsolutePosition().x;
+	var offsetY = (currentLayer.layer).getAbsolutePosition().y;
+	var nodePosX = node.kineticNode.getX() * (currentLayer.layer).getScale().x;
+	var nodePosY = node.kineticNode.getY() * (currentLayer.layer).getScale().y;
+	
 	document.getElementById('articleMenu').innerHTML = "";
 	for (var a in node.articles) {
 		var article = node.articles[a];
@@ -145,13 +153,12 @@ function toggleArticleMenuOn(node) {
 		button.setAttribute("articleURL", article.url);
 		button.setAttribute("onclick", "showArticle(event)");
 		button.setAttribute("class", "articleButton");
-		//button.addEventListener("click", function(e){console.log('hello');}, false);
 		var text = document.createTextNode(shortTitle);
 		button.appendChild(text);
 		document.getElementById('articleMenu').appendChild(button);
 		document.getElementById('articleMenu').innerHTML += "<br/>";
-		document.getElementById('articleMenu').style.left = (node.x + offsetX) + "px";
-		document.getElementById('articleMenu').style.top = (node.y + offsetY) + "px";
+		document.getElementById('articleMenu').style.left = (nodePosX + offsetX) + "px";
+		document.getElementById('articleMenu').style.top = (nodePosY + offsetY) + "px";
 		document.getElementById('articleMenu').style.display = "inline";
 	}
 }
