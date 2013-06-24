@@ -1,34 +1,36 @@
 function draw() {
-	drawLines();
+	//drawLines();
 	drawNodes();
 }
 
 /***********************************
 TIMELINE FUNCTIONS
 ***********************************/
+
+
 //TODO: order by date, not by node ID
 function drawTimeline() {
 	var numNodes = nodes.length;
 	var datesDictionary = {}; // use hash, no duplicates
+	var dates = []; // array, for sorting
 	var ticks = [];
+	tickLayer = new Kinetic.Layer();
 	
 	/* datesDictionary contains all unique dates */
 	for (var n in allNodes) {
-		var date = allNodes[n].date;
-		var splitDate = date.split("-");
-		var shortDate = splitDate[1] + "/\n" + splitDate[0];
-		
-		if (datesDictionary[shortDate] == null) {
-			var startPoint = {x: allNodes[n].x, y: 0};
-			var endPoint = {x: allNodes[n].x, y: 10};
+		var currentNode = allNodes[n];
+		if (datesDictionary[currentNode.datestring] == null) {
+			var startPoint = {x: currentNode.x, y: 0};
+			var endPoint = {x: currentNode.x, y: 10};
 			var points = [startPoint, endPoint];
-			datesDictionary[shortDate] = {"points": points, "x": allNodes[n].x};
+			var splitDate = currentNode.datestring.split(" ");
+			datesDictionary[currentNode.datestring] = {
+													"text": splitDate[0] + "\n" + splitDate[2],
+													"points": points, 
+													"x": currentNode.x,
+													"datestring": getDateString(splitDate[1], splitDate[0])};
 		}
 	}
-	
-	tickLayer = new Kinetic.Layer();
-	console.log(datesDictionary);
-	//var sortedDatesDictionary = 
 	
 	for (var d in datesDictionary) {
 		var tick = new Kinetic.Line({
@@ -40,7 +42,7 @@ function drawTimeline() {
 			x: datesDictionary[d].x - (CANVAS_WIDTH/numNodes)/2,
 			y: 15,
 			width: CANVAS_WIDTH/numNodes,
-			text: d,
+			text: datesDictionary[d].text,
 			fontSize: 15,
 			fontFamily: 'Calibri',
 			fill: 'black',

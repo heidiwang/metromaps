@@ -734,8 +734,7 @@ function setNodesAndLines(layerId) {
 		}
 	}
 	
-	drawLines();
-	drawNodes();
+	draw();
 }
 
 function countLayers() {

@@ -10,15 +10,45 @@ function setLayout() {
 	}
 }
 
-// Evenly space the nodes across the timeline
+// Evenly space the nodes across the timeline in order by date
 function setXPos() {
 	var spacing = (CANVAS_WIDTH - 100)/(allNodes.length - 1);
 	var currentPos = 50;
+	
+	// add datestring property to node objects
+	for (var n in allNodes) {
+		var date = allNodes[n].date;
+		var splitDate = date.split("-");
+		var datestring = getDateString(splitDate[1], splitDate[0]);
+		var nodeObj = allNodes[n];
+		nodeObj.datestring = datestring;
+	}
+	
+	// sort by date
+	allNodes.sort(function(a,b) {
+		var aDate = new Date(a.datestring);
+		var bDate = new Date(b.datestring);
+		return aDate - bDate;
+	});
+	
 	for (var n in allNodes) {
 		allNodes[n].x = currentPos;
 		currentPos += spacing;
 	}
 }
+
+function getDateString(month, year) {
+	var MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
+						"July", "August", "September", "October", "November", "December"];
+	var datestring = "";
+	
+	datestring += MONTH_NAMES[parseInt(month, 10) - 1];
+	datestring += " 1, ";
+	datestring += year;
+	
+	return datestring;
+}
+
 
 // Find all possible orderings of the lines (i.e. 1234, 1243, 1324, etc.) using permute
 // After you find the optimal line ordering, set a major Y position for each line
