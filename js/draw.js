@@ -1,5 +1,4 @@
 function draw() {
-	initializeColors();
 	drawLines();
 	drawNodes();
 }
@@ -8,26 +7,28 @@ function draw() {
 TIMELINE FUNCTIONS
 ***********************************/
 //TODO: order by date, not by node ID
-function drawTimeline(tickStage) {
+function drawTimeline() {
 	var numNodes = nodes.length;
 	var datesDictionary = {}; // use hash, no duplicates
 	var ticks = [];
 	
 	/* datesDictionary contains all unique dates */
-	for (var n in nodes) {
-		var date = nodes[n].date;
+	for (var n in allNodes) {
+		var date = allNodes[n].date;
 		var splitDate = date.split("-");
-		var shortDate = splitDate[1] + "/" + splitDate[0];
+		var shortDate = splitDate[1] + "/\n" + splitDate[0];
 		
 		if (datesDictionary[shortDate] == null) {
-			var startPoint = {x: nodes[n].x, y: 0};
-			var endPoint = {x: nodes[n].x, y: 10};
+			var startPoint = {x: allNodes[n].x, y: 0};
+			var endPoint = {x: allNodes[n].x, y: 10};
 			var points = [startPoint, endPoint];
-			datesDictionary[shortDate] = {"points": points, "x": nodes[n].x};
+			datesDictionary[shortDate] = {"points": points, "x": allNodes[n].x};
 		}
 	}
 	
-	var tickLayer = new Kinetic.Layer();
+	tickLayer = new Kinetic.Layer();
+	console.log(datesDictionary);
+	//var sortedDatesDictionary = 
 	
 	for (var d in datesDictionary) {
 		var tick = new Kinetic.Line({

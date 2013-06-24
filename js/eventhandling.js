@@ -1,6 +1,13 @@
 /***********************************
-ZOOM LOGIC
+ZOOM & PAN LOGIC
 ***********************************/
+function synchronizePan() {
+	stage.on('dragmove', function () {
+		tickStage.setX(stage.getX());
+		tickStage.draw();
+	});
+}
+
 //TODO: Figure out why the node circles spazz out while zooming
 function zoom(e) {
 	//Clear the article menu
@@ -17,32 +24,44 @@ function zoom(e) {
 	var newScaleX = oldScaleX+zoomAmount;
 	var newScaleY = oldScaleY+zoomAmount;
 	
-	// Cap the zoom at 0.2 to prevent upside down land
+	var numLayers = countLayers();
+	
+	// Cap the upper and lower bounds of zooming
 	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
 		currentLayer.draw();
 		return;
-	}
-	
-	//TODO: add logic for any number of layers
-	/*for (var l in layers) {
-	}*/
-	
-	else if ((newScaleX > 2.5 || newScaleY > 2.5) && (zoomAmount > 0)) {
+	}	
+	else if ((newScaleX > numLayers*2 || newScaleY > numLayers*2) 
+					&& (zoomAmount > 0)) {
 		currentLayer.draw();
 		return;
 	}
 	
+	// Translate the layer to keep image around cursor point
 	var scaleRatio = newScaleX / oldScaleX;
-		
-	// Translate the layers to keep image around cursor point
 	var layerPosX = mousePos.x - currentLayer.getAbsolutePosition().x;
 	var layerPosY = mousePos.y - currentLayer.getAbsolutePosition().y;
 	var newAbsPosX = mousePos.x - (layerPosX * scaleRatio);
 	var newAbsPosY = mousePos.y - (layerPosY * scaleRatio);
-	
 	currentLayer.setAbsolutePosition(newAbsPosX, newAbsPosY);
+	tickLayer.setAbsolutePosition(newAbsPosX, 0);
 	currentLayer.setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
+	tickLayer.setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
+	
+	// Draw the correct nodes and lines for this zoom amount onto the layer
+	// Each layer gets 2 units of zoom (Layer0 gets 0-2, Layer1 gets 2-4, etc.)
+	var prevLayerId = lines[0].layerId;
+	var layerId = getLayer(newScaleX);
+	if (prevLayerId != layerId) {
+		setNodesAndLines(layerId);
+	}
+	
 	currentLayer.draw();
+	tickLayer.draw();
+}
+
+function getLayer(scale) {
+	return Math.ceil((scale/2) - 1);
 }
 
 

@@ -9,6 +9,7 @@ var allNodes = [];
 var lines = []; // currently displayed lines
 var nodes = []; // currently displayed nodes
 var currentLayer = new Kinetic.Layer();
+var tickLayer;
 var CANVAS_WIDTH = 1200;
 var CANVAS_HEIGHT = 530;
 
@@ -613,6 +614,8 @@ function formSubmit() {
 				]
 	}
 	sanitizeData(data);
+	initializeColors();
+	setNodesAndLines(0);
 	
 	$("#mapTitle").html(data.name + " Metromap");
 	
@@ -635,9 +638,8 @@ function sanitizeData(data) {
 		}
 	}
 	
-	/* Calculate optimal layout and initialize to layer 0 */
+	/* Calculate optimal layout*/
 	setLayout(nodes);
-	setNodesAndLines(0);
 }
 
 function initializeStageAndLayers() {
@@ -650,12 +652,7 @@ function initializeStageAndLayers() {
 	tickStage = new Kinetic.Stage({
 		container: 'container',
 		width: CANVAS_WIDTH,
-		height: 60,
-		draggable: true
-	});
-	stage.on('dragmove', function () {
-		tickStage.setX(stage.getX());
-		tickStage.draw();
+		height: 60 * countLayers()
 	});
 	
 	var backgroundLayer = new Kinetic.Layer({
@@ -670,7 +667,8 @@ function initializeStageAndLayers() {
 	clearArticleHandler(backgroundRect);
 	stage.add(backgroundLayer);
 	
-	drawTimeline(tickStage);
+	drawTimeline();
+	synchronizePan(); // make timeline zoom and pan with the main canvas
 	stage.add(currentLayer);
 }
 
@@ -712,6 +710,11 @@ function getLineById(lineId) {
 
 /* Set the "nodes" and "lines" variables to a hold only the data of given layer */
 function setNodesAndLines(layerId) {
+	//clear previous
+	lines = [];
+	nodes = [];
+	currentLayer.removeChildren();
+	
 	for (var l in allLines) {
 		if (allLines[l].layerId == layerId) {
 			lines.push(allLines[l]);
@@ -731,4 +734,19 @@ function setNodesAndLines(layerId) {
 		}
 	}
 	
+	drawLines();
+	drawNodes();
+}
+
+function countLayers() {
+	var distinctLayers = {};
+	for (var l in allLines) {
+		var id = allLines[l].layerId;
+		distinctLayers[id] = 1;
+	}
+	var count = 0;
+	for (var i in distinctLayers) {
+		count++;
+	}
+	return count;
 }
