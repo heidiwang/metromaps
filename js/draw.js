@@ -1,5 +1,5 @@
 function draw() {
-	//drawLines();
+	drawLines();
 	drawNodes();
 }
 
@@ -7,8 +7,6 @@ function draw() {
 TIMELINE FUNCTIONS
 ***********************************/
 
-
-//TODO: order by date, not by node ID
 function drawTimeline() {
 	var numNodes = nodes.length;
 	var datesDictionary = {}; // use hash, no duplicates
@@ -76,6 +74,7 @@ function drawLines() {
 		
 		// Iterate through this line's nodes to get the segments
 		for (var n = 1; n < currentNodeSet.length; n++) {
+			//console.log(currentNodeSet);
 			var prevNodeId = currentNodeSet[(n-1)];
 			var nodeId = currentNodeSet[n];
 			var prevNode = getNodeById(prevNodeId);

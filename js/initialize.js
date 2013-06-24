@@ -640,6 +640,18 @@ function sanitizeData(data) {
 	
 	/* Calculate optimal layout*/
 	setLayout(nodes);
+	
+	// sort nodes by date
+	for (var l in allLines) {
+		var myNodes = allLines[l].nodes;
+		myNodes.sort(function(a,b){
+			var aDate = new Date(getNodeById(a).datestring);
+			var bDate = new Date(getNodeById(b).datestring);
+			var comp = (aDate <= bDate) ? -1 : 1;
+			return comp;
+		});
+	}
+
 }
 
 function initializeStageAndLayers() {
@@ -693,17 +705,17 @@ function get_random_color() {
 }
 
 function getNodeById(nodeId) {
-	for (var n in nodes) {
-		if (nodes[n].id == nodeId) {
-			return nodes[n];
+	for (var n in allNodes) {
+		if (allNodes[n].id == nodeId) {
+			return allNodes[n];
 		}
 	}
 }
 
 function getLineById(lineId) {
-	for (var l in lines) {
-		if (lines[l].id == lineId) {
-			return lines[l];
+	for (var l in allLines) {
+		if (allLines[l].id == lineId) {
+			return allLines[l];
 		}
 	}
 }

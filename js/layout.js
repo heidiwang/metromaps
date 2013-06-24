@@ -28,7 +28,8 @@ function setXPos() {
 	allNodes.sort(function(a,b) {
 		var aDate = new Date(a.datestring);
 		var bDate = new Date(b.datestring);
-		return aDate - bDate;
+		var comp = (aDate <= bDate) ? -1 : 1;
+		return comp;
 	});
 	
 	for (var n in allNodes) {
