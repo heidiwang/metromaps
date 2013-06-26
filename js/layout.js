@@ -8,6 +8,9 @@ function setLayout() {
 	for (var i = 0; i < 100; i++) {
 		applyColoumbsLaw();
 	}
+	
+	//TODO: apply hooke's law (attraction) to nodes of the same line
+	//remember to only apply on Y, do not move X
 }
 
 // Evenly space the nodes across the timeline in order by date

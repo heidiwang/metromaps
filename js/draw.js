@@ -52,7 +52,6 @@ function drawTimeline() {
 	}
 	
 	tickStage.add(tickLayer);
-	return tickLayer;
 }
 
 /***********************************
@@ -202,9 +201,8 @@ function offsetPoint (originalPoint, distance, slope, down) {
 	}
 }
 
-// Title labels for each line
-// For now, position it below first node in the line
-// TODO: Find a more optimal position
+// Title labels for each line. For now, position it below first node in the line
+// TODO: Find a more optimal positioning algorithm
 function drawLineTitles() {
 	
 	for (var l in lines) {

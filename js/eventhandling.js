@@ -3,6 +3,8 @@ ZOOM & PAN LOGIC
 ***********************************/
 function synchronizePan() {
 	stage.on('dragmove', function () {
+		//TODO: there's a bug here "Cannot read property 'x' of undefined"
+		// when you drag outside the main canvas area onto the timeline area
 		tickStage.setX(stage.getX());
 		tickStage.draw();
 	});
@@ -10,7 +12,8 @@ function synchronizePan() {
 
 //TODO: Figure out why the node circles spazz out while zooming
 function zoom(e) {
-	//Clear the article menu
+	
+	//Hide the article menu
 	document.getElementById('articleMenu').style.display = "none";
 	
 	var mousePos = stage.getMousePosition();
@@ -28,13 +31,26 @@ function zoom(e) {
 	
 	// Cap the upper and lower bounds of zooming
 	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
-		currentLayer.draw();
-		return;
+		if (currentLayerNum == 0) { // If layer = 0, freeze
+			currentLayer.draw();
+			return;
+		}
+		else { // Otherwise, display layer above
+			currentLayerNum--;
+			init(currentLayerNum);
+			return;
+		}
 	}	
-	else if ((newScaleX > numLayers*2 || newScaleY > numLayers*2) 
-					&& (zoomAmount > 0)) {
-		currentLayer.draw();
-		return;
+	else if ((newScaleX > 2 || newScaleY > 2) && (zoomAmount > 0)) {
+		if (currentLayerNum == (countLayers() - 1)) {
+			currentLayer.draw();
+			return;
+		}
+		else { // Display layer below
+			currentLayerNum++;
+			init(currentLayerNum);
+			return;
+		}
 	}
 	
 	// Translate the layer to keep image around cursor point
@@ -45,25 +61,12 @@ function zoom(e) {
 	var newAbsPosY = mousePos.y - (layerPosY * scaleRatio);
 	currentLayer.setAbsolutePosition(newAbsPosX, newAbsPosY);
 	tickLayer.setAbsolutePosition(newAbsPosX, 0);
-	currentLayer.setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
-	tickLayer.setScale(oldScaleX+zoomAmount, oldScaleY+zoomAmount);
-	
-	// Draw the correct nodes and lines for this zoom amount onto the layer
-	// Each layer gets 2 units of zoom (Layer0 gets 0-2, Layer1 gets 2-4, etc.)
-	var prevLayerId = lines[0].layerId;
-	var layerId = getLayer(newScaleX);
-	if (prevLayerId != layerId) {
-		setNodesAndLines(layerId);
-	}
+	currentLayer.setScale(newScaleX, newScaleY);
+	tickLayer.setScale(newScaleX, newScaleY);
 	
 	currentLayer.draw();
 	tickLayer.draw();
 }
-
-function getLayer(scale) {
-	return Math.ceil((scale/2) - 1);
-}
-
 
 /***********************************
 HIGHLIGHTING
