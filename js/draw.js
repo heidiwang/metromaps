@@ -120,6 +120,8 @@ function drawLines() {
 		}
 		allLines.push(line);
 		allHighlights.push(lineHighlights);
+		//allLines[(lines[l].id)] = line;
+		//allHighlights[(lines[l].id)] = lineHighlights;
 	}
 	toggleFocus(allLines, allHighlights);
 	drawLineTitles();

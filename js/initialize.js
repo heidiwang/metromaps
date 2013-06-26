@@ -13,6 +13,7 @@ var currentLayer = new Kinetic.Layer();
 var tickLayer;
 var CANVAS_WIDTH = 1200;
 var CANVAS_HEIGHT = 530;
+var focused = [];	// which linee(s) is/are focused? determines which submap to display
 
 /***********************************
 HANDLE FORM SUBMIT (user entered JSON file name)
@@ -34,10 +35,9 @@ function processForm(e) {
 
 function formSubmit() {
 	var filename = ($('#filename')).val() + ".json";
-	console.log(filename);
 	
 	// For testing on local machine
-	var data = { 
+	/* var data = { 
 			"name": "Lord of the Rings",
 			"lines": 
 				[{
@@ -625,23 +625,20 @@ function formSubmit() {
 	initializeColors();
 	$("#mapTitle").html(data.name + " Metromap");
 	init(currentLayerNum);
-	document.addEventListener("mousewheel", zoom, false);
-	/* $.getJSON(filename, function(JSONdata) {
+	document.addEventListener("mousewheel", zoom, false); */
+	
+	$.getJSON(filename, function(JSONdata) {
 		var data = JSONdata;
-		console.log(data);
+		
 		sanitizeData(data);
 		initializeColors();
-		setNodesAndLines(0);
-	
 		$("#mapTitle").html(data.name + " Metromap");
-	
-		initializeStageAndLayers();
+		init(currentLayerNum);
 		document.addEventListener("mousewheel", zoom, false);
-		draw();
 	}).error(function() {
 		document.getElementById("container").innerHTML = "File not found";
 	});
-	*/
+	
 }
 
 // Create references from nodes to lines and lines to nodes

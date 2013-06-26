@@ -30,7 +30,7 @@ function zoom(e) {
 	var numLayers = countLayers();
 	
 	// Cap the upper and lower bounds of zooming
-	if ((newScaleX < 0.2 || newScaleY < 0.2) && (zoomAmount < 0)){
+	if ((newScaleX < 0.5 || newScaleY < 0.5) && (zoomAmount < 0)){
 		if (currentLayerNum == 0) { // If layer = 0, freeze
 			currentLayer.draw();
 			return;
